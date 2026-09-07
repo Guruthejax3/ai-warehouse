@@ -19,5 +19,9 @@ data/pilot_videos/*
 data/evidence_clips/*
 !data/evidence_clips/.gitkeep
 
+# Motion detection outputs (generated files)
+cv-pipeline/motion_detection/outputs/
+*.annotated.mp4
+
 # OS
 .DS_Store
