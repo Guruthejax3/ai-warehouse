@@ -1,0 +1,23 @@
+# Python
+venv/
+__pycache__/
+*.pyc
+.env
+
+# Node
+node_modules/
+.next/
+
+# Model weights
+*.pt
+*.onnx
+*.pth
+
+# Data (folders tracked via .gitkeep)
+data/pilot_videos/*
+!data/pilot_videos/.gitkeep
+data/evidence_clips/*
+!data/evidence_clips/.gitkeep
+
+# OS
+.DS_Store

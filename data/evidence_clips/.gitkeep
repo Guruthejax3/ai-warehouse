@@ -1,0 +1,2 @@
+# This file ensures the evidence_clips directory is tracked by git.
+# Actual evidence clip files will be ignored and added separately.

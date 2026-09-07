@@ -1,0 +1,2 @@
+# This file ensures the pilot_videos directory is tracked by git.
+# Actual video files will be ignored and added separately.
