@@ -1,7 +1,6 @@
 # ReplayTwin — local stack
 #
-#   docker compose up postgres backend   # DB + API
-#   docker compose up                    # + frontend dashboard (once added)
+#   docker compose up   # Postgres + API + dashboard (frontend)
 #
 # The backend falls back to SQLite when Postgres is unreachable — handy for a
 # laptop demo. Postgres is the intended store: every assistant answer is
@@ -39,12 +38,15 @@ services:
       postgres:
         condition: service_healthy
 
-  # frontend:
-  #   build: ./frontend
-  #   ports:
-  #     - "3000:3000"
-  #   depends_on:
-  #     - backend
+  frontend:
+    build:
+      context: ./frontend
+      args:
+        NEXT_PUBLIC_API_URL: http://backend:8000
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
 
 volumes:
   pgdata:
