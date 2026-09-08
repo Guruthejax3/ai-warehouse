@@ -1,4 +1,20 @@
+# === Core CV Pipeline ===
 opencv-python>=4.9.0
 numpy>=1.26.0
-# Optional — only for --method raft
-# torch torchvision
+PyYAML>=6.0
+
+# === Matching ===
+fastdtw>=0.3.4
+
+# === Optional — only for --method raft ===
+# torch
+# torchvision
+
+# === Optional — MediaPipe pose estimation ===
+# mediapipe>=0.10.0
+
+# === Optional — SAM2 segmentation ===
+# segment-anything-2
+
+# === Optional — Voice coaching ===
+# pyttsx3

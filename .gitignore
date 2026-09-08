@@ -16,8 +16,12 @@ node_modules/
 # Data (folders tracked via .gitkeep)
 data/pilot_videos/*
 !data/pilot_videos/.gitkeep
+data/clips/*
+!data/clips/.gitkeep
 data/evidence_clips/*
 !data/evidence_clips/.gitkeep
+data/exemplars/*.json
+!data/exemplars/behaviors.json
 
 # Motion detection outputs (generated files)
 cv-pipeline/motion_detection/outputs/

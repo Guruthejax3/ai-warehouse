@@ -1,0 +1,5 @@
+{
+  "exemplars": [],
+  "version": "1.0",
+  "description": "Seeded exemplar library for ReplayTwin behaviour matching. Add exemplars via scripts/tag_exemplar.py."
+}
