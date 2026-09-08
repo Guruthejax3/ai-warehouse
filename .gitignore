@@ -27,5 +27,9 @@ data/exemplars/*.json
 cv-pipeline/motion_detection/outputs/
 *.annotated.mp4
 
+# Runtime event DB (SQLite fallback) — regenerated, don't commit
+data/events.db
+data/events.db-*
+
 # OS
 .DS_Store
