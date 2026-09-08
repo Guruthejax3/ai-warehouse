@@ -120,6 +120,7 @@ class PhysicsState:
     physics_valid: bool = True    # mandatory gate — must be True to alert
     severity_score: float = 0.0   # 0-1, overall physics severity
     justification: str = ""
+    features: Dict[str, float] = field(default_factory=dict)  # raw kinematics
 
 
 # ---------------------------------------------------------------------------

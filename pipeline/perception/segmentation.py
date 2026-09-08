@@ -52,6 +52,11 @@ class SegmentationTracker:
         iou_threshold: minimum IoU for detection->track association.
         merge_distance_px: max centroid distance (px) for fragment merging and
                            distance-based association when IoU is low.
+        merge_kernel_px: morphology kernel used to bridge small gaps between
+                         fragments of the SAME object before connected
+                         components. Keep it small — a large kernel merges the
+                         whole scene into one static blob and locking the
+                         centroid to frame-centre (kills real motion).
         max_gap_frames: frames a track can be missing before deletion.
         max_new_tracks: cap on new tracks created per frame (large counts are
                         usually fragmented motion noise, not real objects).
@@ -64,6 +69,7 @@ class SegmentationTracker:
         min_region_area: int = 500,
         iou_threshold: float = 0.15,
         merge_distance_px: int = 40,
+        merge_kernel_px: int = 6,
         max_gap_frames: int = 5,
         max_new_tracks: int = 12,
         target_fps: float = 5.0,
@@ -72,6 +78,7 @@ class SegmentationTracker:
         self.min_region_area = min_region_area
         self.iou_threshold = iou_threshold
         self.merge_distance_px = merge_distance_px
+        self.merge_kernel_px = merge_kernel_px
         self.max_gap_frames = max_gap_frames
         self.max_new_tracks = max_new_tracks
         self.target_fps = target_fps
@@ -207,11 +214,13 @@ class SegmentationTracker:
             x2, y2 = min(max(x2, x1 + 1), w), min(max(y2, y1 + 1), h)
             cv2.rectangle(mask, (x1, y1), (x2, y2), 255, -1)
 
-        # Dilate to merge fragmented flow regions into cohesive blobs
+        # Bridge small gaps between fragments of the same object. Keep the
+        # kernel small: a large kernel merges the whole scene into one blob
+        # whose centroid is locked to the frame centre (no real motion).
         kernel = cv2.getStructuringElement(
-            cv2.MORPH_ELLIPSE, (self.merge_distance_px, self.merge_distance_px)
+            cv2.MORPH_ELLIPSE, (self.merge_kernel_px, self.merge_kernel_px)
         )
-        mask = cv2.dilate(mask, kernel, iterations=2)
+        mask = cv2.dilate(mask, kernel, iterations=1)
 
         num_labels, labels, stats, _centroids = cv2.connectedComponentsWithStats(
             mask, connectivity=8

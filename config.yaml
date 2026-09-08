@@ -16,6 +16,8 @@ segmentation:
   enabled: true
   use_sam2: false            # only runs on flow-flagged bboxes; lazy-loads torch
   fallback: opencv_fallback  # always available
+  merge_kernel_px: 6         # morphology gap-bridge; keep SMALL (large -> one static blob)
+  max_new_tracks: 12         # cap new tracks/frame (fragmented flow = noise, not objects)
 
 pose_estimation:
   enabled: true
@@ -25,9 +27,9 @@ pose_estimation:
 trajectory:
   smoother: moving_average   # moving_average | kalman
   ma_window: 5               # moving average window size
-  min_track_length: 3        # minimum frames to consider a valid track
+  min_track_length: 10       # minimum frames (~2 s at 5 fps) to consider a valid track
+  min_speed_mps: 0.05        # skip sealed tracks slower than this (parked objects)
   max_gap_frames: 5          # max frames a track can be missing before deletion
-  iou_threshold: 0.3         # minimum IoU for detection-track association
 
 matching:
   algorithm: fastdtw         # fastdtw | numpy_dtw
