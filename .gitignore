@@ -30,6 +30,8 @@ cv-pipeline/motion_detection/outputs/
 # Runtime event DB (SQLite fallback) — regenerated, don't commit
 data/events.db
 data/events.db-*
+data/backend.db
+data/e2e.db
 
 # OS
 .DS_Store
