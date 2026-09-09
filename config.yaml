@@ -35,6 +35,13 @@ matching:
   algorithm: fastdtw         # fastdtw | numpy_dtw
   exemplar_path: data/exemplars/behaviors.json
   max_distance: 2.0          # DTW distance threshold for valid match
+  # Behaviours detected by trajectory-SHAPE matching (DTW). Rule-driven
+  # behaviours (zone placement, stacking, equipment, sequence) must NOT compete
+  # here — a straight-line exemplar would swallow every translation.
+  dtw_classes:
+    - product_dropped
+    - product_dragged
+    - material_pushed_or_thrown
   behavior_classes:
     - product_dropped
     - product_dragged
@@ -46,6 +53,16 @@ matching:
     - pallet_mispositioned
     - material_pushed_or_thrown
     - unsafe_loading_sequence
+
+# Layout zones (per camera) for the outside_designated_zone RULE. Polygons are
+# normalized 0-1 frame coordinates. 'default' applies when a camera id is
+# unknown; leaving zones empty keeps the rule dormant (no false positives).
+zones:
+  default:
+    - - [0.0, 0.0]
+      - [1.0, 0.0]
+      - [1.0, 1.0]
+      - [0.0, 1.0]
 
 physics:
   mandatory_before_alert: true

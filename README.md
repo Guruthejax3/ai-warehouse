@@ -27,10 +27,14 @@ Pose (optional) ──► keypoints                          pipeline/perception
    ▼
 Trajectory builder ──► {(t,x,y,z_est) per track}      pipeline/trajectory/builder.py
    ▼
-Behaviour matching ──► DTW vs exemplar library         pipeline/matching/dtw_matcher.py
+Behaviour matching ──► DTW vs exemplar library (scoped      pipeline/matching/dtw_matcher.py
+   │                     to motion-shape classes: drop/drag/throw)
+   ├── Rule-based behaviours ──► zone placement, layout       pipeline/rules/zones.py
+   │                            (deterministic rules, NOT DTW)
    ▼
 Physics check ──► v, a, jerk, drop height              pipeline/physics/kinematics.py
-   │             (mandatory gate before alerting)
+   │             (mandatory gate before alerting; throw/push uses launch
+   │              signature — horizontal throws pass without a drop height)
    ▼
 Risk scoring ──► score + risk level + justification    pipeline/risk/scoring.py
    │            persist to Postgres; trim ±5s evidence clip, blur faces
@@ -76,14 +80,15 @@ or served by the API.
 backend/            FastAPI app (ingest, events, replay, voice, assistant, WS)
 cv-pipeline/        motion detection (Farneback / RAFT) — reused, not rewritten
 data/clips/         real pilot videos (GITIGNORED — never committed)
-data/exemplars/     behaviour exemplar library (JSON)
+data/exemplars/     behaviour exemplar library (JSON); 2 real pilot-clip exemplars
 data/evidence_clips/±5s blurred evidence clips (GITIGNORED)
 db/schema.sql       Postgres schema (events, trajectories, feedback, …)
 frontend/           Next.js dashboard + replay viewer
 pipeline/           the downstream pipeline (perception → … → risk → assistant)
+pipeline/rules/     deterministic rule-based behaviours (zones; stacking stubs)
 scripts/            CLI helpers (run_pipeline.py, tag_exemplar.py)
 tests/              unit + e2e tests
-config.yaml         pipeline tuning (FPS, thresholds, weights, exemplars)
+config.yaml         pipeline tuning (FPS, thresholds, weights, exemplars, zones)
 ```
 
 ---
@@ -172,6 +177,8 @@ python -m pytest -q
 
 - `test_dtw_matcher.py` — DTW matching on synthetic trajectories
 - `test_risk_scoring.py` — risk formula, levels, justification, physics gate
+- `test_kinematics.py` — 2D drop-height estimation, throw vs. drag signatures
+- `test_zones.py` — deterministic zone-placement rule (normalised polygons)
 - `test_replay_assistant_voice.py` — replay generator, assistant tools, voice
 - `test_backend.py` — FastAPI endpoints, WS broadcast, feedback (SQLite)
 - `test_pipeline_e2e.py` — real clip through the full pipeline (skips if
@@ -186,11 +193,23 @@ python -m pytest -q
 - **No GPU** — all models run on CPU. SAM2 (if installed) is ~0.5–2 s/frame on
   CPU, so it is limited to flow-flagged regions and low target FPS.
 - **Voice coaching is a stub** behind `VOICE_COACHING_ENABLED`.
-- **Exemplar library is seeded with synthetic trajectories** — needs real
-  tagging via `scripts/tag_exemplar.py`.
+- **Rule-based behaviours are partially implemented.** `outside_designated_zone`
+  is fully wired (per-camera normalised polygons; default zone covers the frame
+  so the rule is dormant until operators configure real bays). `incorrect_stacking`,
+  `unstable_stacking`, `no_required_equipment`, `pallet_mispositioned`, and
+  `unsafe_loading_sequence` are acknowledged signatures in the exemplar library
+  but lack dedicated rule/state detectors — exercises are placeholders until a
+  stack-cluster / equipment-proximity / sequence FSM exists. They are excluded
+  from the DTW competition (`matching.dtw_classes`) so they cannot swallow real
+  shape matches.
+- **Exemplar library** ships 2 real tracks tagged from pilot clips
+  (`product_dragged`, `material_pushed_or_thrown`); the rest are synthetic seeds.
+  Use `scripts/tag_exemplar.py` to tag more from your footage.
 - **Homography / pixel-scale is manual** — calibrate reference-object dimensions
   in `config.yaml` per camera.
-- **Drag vs. outside-designated-zone discrimination is limited** — relies on
-  spatial context only.
+- **Trajectory-only classification** can call a long, straight carry a "drag"
+  (no person/object discrimination upstream). The physics gate + risk threshold
+  filter most noise; a per-camcorder calibration pass and zone config are
+  expected before production use.
 - **Only 7 pilot clips** are available for testing.
 - **No CI/CD** yet.

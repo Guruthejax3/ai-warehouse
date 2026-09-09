@@ -93,6 +93,7 @@ class RiskScorer:
         fragility: str = "standard",
         zone_criticality: float = 0.3,
         behavior_override: Optional[str] = None,
+        rule_reason: str = "",
     ) -> RiskEvent:
         """Build a fully-justified RiskEvent for one trajectory.
 
@@ -150,6 +151,7 @@ class RiskScorer:
             zone_criticality=zone_criticality,
             gated=gated,
             physics_reasons=physics_reasons,
+            rule_reason=rule_reason,
         )
 
         return RiskEvent(
@@ -212,14 +214,24 @@ class RiskScorer:
         zone_criticality: float,
         gated: bool,
         physics_reasons: Optional[List[str]],
+        rule_reason: str = "",
     ) -> str:
         """Compose a human-readable explanation, never a bare number."""
         parts: List[str] = []
-        parts.append(
-            f"Behavior '{behavior_class}' matched with "
-            f"{behavior.confidence:.0%} confidence (DTW distance "
-            f"{behavior.dtw_distance:.2f})."
-        )
+        if rule_reason:
+            # Deterministic-rule event (zone placement, stacking, FSM, ...):
+            # explain the rule that fired rather than implying a DTW match.
+            parts.append(f"Rule fired: {rule_reason}")
+            parts.append(
+                f"Behavior '{behavior_class}' confirmed by a deterministic "
+                f"rule (no exemplar matching)."
+            )
+        else:
+            parts.append(
+                f"Behavior '{behavior_class}' matched with "
+                f"{behavior.confidence:.0%} confidence (DTW distance "
+                f"{behavior.dtw_distance:.2f})."
+            )
         parts.append(
             f"Physics: {physics.justification.strip()}"
         )

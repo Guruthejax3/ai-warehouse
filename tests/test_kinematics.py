@@ -49,6 +49,17 @@ def _horizontal_drag(n=40):
     return _traj(xs, ys, fps=5.0)
 
 
+def _horizontal_throw(n=24):
+    """Fast horizontal burst then a stop — a floor-level launch (the
+    'Throwing Mattresses' signature) with NO drop height. velocity m/s:
+    [0, 2, 3, 1, 0, ...] gives a sharp jerk spike (a push, not a carry)."""
+    v = np.array([0, 2, 3, 1, 0] + [0] * (n - 5), dtype=float)
+    dt = 1.0 / 5.0
+    xs = np.cumsum(v) * dt
+    ys = np.full(n, 50.0)
+    return _traj(xs, ys, fps=5.0)
+
+
 def test_2d_drop_estimates_height_without_depth_channel():
     """A fall along screen-y with peak speed ~2.2 m/s yields a drop height
     consistent with free fall (v²/2g ≈ 0.25 m) and physics_valid True."""
@@ -77,5 +88,38 @@ def test_2d_horizontal_drag_is_not_a_drop():
     traj = _horizontal_drag()
     ph = analyzer.analyze(traj)
     assert ph.drop_height_est == 0.0
+    ok, _ = analyzer.cross_check("product_dropped", ph)
+    assert not ok
+
+
+def test_horizontal_throw_passes_push_or_thrown_launch_signature():
+    """A horizontal launch (fast burst + high jerk, no drop height) must pass
+    the physics gate for material_pushed_or_thrown — otherwise the real
+    'Throwing Mattresses' clip can never fire an alert on 2D footage."""
+    analyzer = KinematicsAnalyzer(impact_velocity_threshold=2.0)
+    traj = _horizontal_throw()
+    ph = analyzer.analyze(traj)
+    assert ph.drop_height_est == 0.0  # horizontal: no fall
+    assert ph.features["max_jerk"] >= analyzer.jerk_threshold
+    ok, reasons = analyzer.cross_check("material_pushed_or_thrown", ph)
+    assert ok, f"expected flat throw to pass gate, got: {reasons}"
+
+
+def test_slow_drag_does_not_pass_push_or_thrown():
+    """A slow drag has neither a drop nor a launch burst → stays gated for
+    material_pushed_or_thrown (no false 'throw' alerts on normal carrying)."""
+    analyzer = KinematicsAnalyzer(impact_velocity_threshold=2.0)
+    traj = _horizontal_drag()
+    ph = analyzer.analyze(traj)
+    ok, _ = analyzer.cross_check("material_pushed_or_thrown", ph)
+    assert not ok
+
+
+def test_horizontal_throw_still_does_not_pass_product_dropped():
+    """The flat throw keeps drop-class gating intact: without a real height
+    change, product_dropped must remain blocked even at high speed."""
+    analyzer = KinematicsAnalyzer(impact_velocity_threshold=2.0)
+    traj = _horizontal_throw()
+    ph = analyzer.analyze(traj)
     ok, _ = analyzer.cross_check("product_dropped", ph)
     assert not ok

@@ -171,9 +171,8 @@ class KinematicsAnalyzer:
             reasons.append(f"peak speed {f.get('peak_velocity', 0):.2f} m/s below "
                            f"minimum motion of {min_motion} m/s")
 
-        if behavior_class in (
-            "product_dropped", "material_pushed_or_thrown",
-        ):
+        if behavior_class == "product_dropped":
+            # A drop needs BOTH a real height change AND an impact speed.
             drop_ok = f.get("drop_height", 0.0) >= self.drop_height_threshold
             impact_ok = (
                 self.impact_velocity_threshold
@@ -190,6 +189,33 @@ class KinematicsAnalyzer:
                 reasons.append(f"impact speed {f.get('impact_speed', 0):.1f} m/s not "
                                f"in [{self.impact_velocity_threshold}, "
                                f"{self.peak_velocity_threshold}] m/s for {behavior_class}")
+
+        elif behavior_class == "material_pushed_or_thrown":
+            # A throw/push is a launch, which on 2D footage is usually
+            # horizontal (no drop height). Accept EITHER a full drop+impact
+            # signature, OR an accelerating burst: impact speed at least half
+            # the drop threshold AND jerk above the rough-handling threshold.
+            # That separates a real launch from a slow drag (low speed) and
+            # from gently carried loads (low jerk).
+            drop_ok = f.get("drop_height", 0.0) >= self.drop_height_threshold
+            impact_ok = (
+                self.impact_velocity_threshold
+                <= f.get("impact_speed", 0.0)
+                <= self.peak_velocity_threshold
+            )
+            launch_ok = bool(
+                f.get("impact_speed", 0.0) >= 0.5 * self.impact_velocity_threshold
+                and f.get("max_jerk", 0.0) >= self.jerk_threshold
+            )
+            if not (drop_ok and impact_ok) and not launch_ok:
+                ok = False
+                reasons.append(
+                    "no launch signature (need drop height "
+                    f"{self.drop_height_threshold:.1f} m with impact, or a "
+                    f"burst with impact ≥ {0.5 * self.impact_velocity_threshold:.1f} "
+                    f"m/s and jerk ≥ {self.jerk_threshold:.0f} m/s³) for "
+                    f"{behavior_class}"
+                )
 
         elif behavior_class == "product_dragged":
             if f.get("peak_velocity", 0.0) > 0.8 * self.peak_velocity_threshold:

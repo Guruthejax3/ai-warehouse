@@ -213,10 +213,17 @@ class DTWMatcher:
         exemplar_path: str = "data/exemplars/behaviors.json",
         algorithm: str = "fastdtw",
         max_distance: float = 2.0,
+        dtw_classes: Optional[List[str]] = None,
     ) -> None:
         self.library = ExemplarLibrary(exemplar_path)
         self.algorithm = algorithm
         self.max_distance = max_distance
+        # Restrict DTW competition to the classes whose signature is a *motion
+        # shape* (drop / drag / throw). Rule-driven behaviours (zone placement,
+        # stacking, equipment, sequence) must not be matched by shape — a
+        # straight-line exemplar would swallow every translation. When unset
+        # (defaults, tests), all exemplars compete as before.
+        self.dtw_classes = dtw_classes
 
     # ------------------------------------------------------------------ public
 
@@ -266,6 +273,11 @@ class DTWMatcher:
                 "flagged as generic unsafe loading.",
             )
         candidates = self.library.all()
+        if self.dtw_classes:
+            candidates = [
+                e for e in candidates
+                if e.get("behavior_class") in self.dtw_classes
+            ]
         if className:
             candidates = [e for e in candidates if e.get("behavior_class") == className]
 

@@ -34,8 +34,9 @@ from pipeline.perception.pose import PoseEstimator  # noqa: E402
 from pipeline.perception.segmentation import SegmentationTracker  # noqa: E402
 from pipeline.physics.kinematics import KinematicsAnalyzer  # noqa: E402
 from pipeline.risk.scoring import RiskScorer  # noqa: E402
+from pipeline.rules.zones import ZoneRuleChecker  # noqa: E402
 from pipeline.trajectory.builder import TrajectoryBuilder  # noqa: E402
-from pipeline.types import RiskEvent, Trajectory  # noqa: E402
+from pipeline.types import BehaviorMatch, RiskEvent, Trajectory  # noqa: E402
 
 logger = logging.getLogger(__name__)
 
@@ -60,7 +61,9 @@ def _build_stages(cfg: Dict):
     matcher = DTWMatcher(
         exemplar_path=cfg["matching"].get("exemplar_path", "data/exemplars/behaviors.json"),
         algorithm=cfg["matching"].get("algorithm", "fastdtw"),
+        dtw_classes=list(cfg["matching"].get("dtw_classes") or []),
     )
+    zone_rule = ZoneRuleChecker(cfg.get("zones", {}))
     physics = KinematicsAnalyzer(
         pixel_scale=float(cfg["physics"].get("pixel_scale", 0.01)),
         gravity=float(cfg["physics"].get("gravity", 9.81)),
@@ -72,7 +75,7 @@ def _build_stages(cfg: Dict):
         evidence_trim_sec=int(cfg["risk"].get("evidence_trim_sec", 5)),
         target_fps=fps,
     )
-    return motion, seg, builder, matcher, physics, risk
+    return motion, seg, builder, matcher, physics, risk, zone_rule
 
 
 def process_clip(
@@ -94,7 +97,8 @@ def process_clip(
     """
     cfg = cfg or load_config()
     fps = float(cfg["pipeline"]["target_fps"])
-    motion, seg, builder, matcher, physics, risk = _build_stages(cfg)
+    pixel_scale = float(cfg["physics"].get("pixel_scale", 0.01))
+    motion, seg, builder, matcher, physics, risk, zone_rule = _build_stages(cfg)
 
     cap = cv2.VideoCapture(str(video_path))
     if not cap.isOpened():
@@ -102,6 +106,8 @@ def process_clip(
 
     src_fps = cap.get(cv2.CAP_PROP_FPS) or 30.0
     step = max(1, int(round(src_fps / fps)))
+    frame_w = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH)) or 1280
+    frame_h = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT)) or 720
 
     prev = None
     frame_idx = 0  # processed-frame count (drives the synthetic clock)
@@ -148,6 +154,30 @@ def process_clip(
         events.append(ev)
         if on_event:
             on_event(ev)
+
+        # Deterministic layout rules (zone placement) fire independently of DTW.
+        zone_trigger = zone_rule.check(traj, frame_w, frame_h, pixel_scale)
+        if zone_trigger:
+            rule_ev = risk.score_event(
+                source_video=str(video_path),
+                frame_idx=int(traj.points[-1].frame_idx),
+                timestamp_sec=float(traj.points[-1].timestamp_sec),
+                behavior=BehaviorMatch(
+                    behavior_class=zone_trigger["behavior_class"],
+                    dtw_distance=0.0,
+                    confidence=1.0,
+                    exemplar_id="",
+                    justification=zone_trigger["reason"],
+                ),
+                physics=ph,
+                physics_ok=True,
+                fragility="standard",
+                zone_criticality=zone_trigger["severity"],
+                rule_reason=zone_trigger["reason"],
+            )
+            events.append(rule_ev)
+            if on_event:
+                on_event(rule_ev)
 
     events.sort(key=lambda e: e.risk_score, reverse=True)
     return events, trajectories
