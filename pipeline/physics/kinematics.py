@@ -92,7 +92,7 @@ class KinematicsAnalyzer:
         max_acceleration = float(np.max(accel))
         max_jerk = float(np.max(jerk))
 
-        drop_height, drop_free_fall = self._estimate_drop_height(zs, vz, speed)
+        drop_height, drop_free_fall = self._estimate_drop_height(zs, vz, vy, speed)
         impact_speed = float(np.max(speed))
 
         # Generic dynamical validity: the trajectory must describe real,
@@ -218,14 +218,27 @@ class KinematicsAnalyzer:
     # ------------------------------------------------------------------ internals
 
     def _estimate_drop_height(
-        self, zs: np.ndarray, vz: np.ndarray, speed: np.ndarray
+        self, zs: np.ndarray, vz: np.ndarray, vy: np.ndarray, speed: np.ndarray
     ) -> tuple:
-        """Estimate drop height from vertical motion + free-fall consistency."""
+        """Estimate drop height from vertical motion + free-fall consistency.
+
+        Two cases:
+        - Depth channel present (zs non-zero): height from the z range and
+          free-fall velocity,	gated on actual vertical displacement.
+        - No depth channel (the common 2D warehouse camera): a fall is
+          inferred from a downward burst in the screen-y velocity (image y
+          grows downward), and the height comes from the free-fall relation
+          h = v²/2g using the impact speed. Purely horizontal motion has
+          no downward burst and correctly scores no drop.
+        """
         if not np.any(zs):
-            # No depth channel: infer from a downward velocity burst + impact.
-            max_down = float(np.min(np.minimum(vz, 0))) if np.any(vz < 0) else 0.0
-            if max_down < -self.impact_velocity_threshold:
-                h = (max_down**2) / (2 * self.gravity)
+            # 2D footage: downward y-velocity marks the fall direction.
+            max_down = float(np.max(np.maximum(vy, 0))) if np.any(vy > 0) else 0.0
+            peak_speed = float(np.max(speed))
+            # Fall detected when the downward burst is clearly above sensor
+            # noise (half the impact threshold).
+            if max_down >= 0.5 * self.impact_velocity_threshold:
+                h = (max(max_down, peak_speed) ** 2) / (2 * self.gravity)
                 return min(h, 3.0), True
             return 0.0, False
 
