@@ -209,6 +209,138 @@ class EventStore:
             cols = list(rows[0]._mapping.keys())
         return self._row(dict(zip(cols, rows[0])))
 
+    # ------------------------------------------------- shift / trend queries
+
+    def summarize_shift(self, window_days: int = 1) -> dict:
+        """Stacked summary of the last ``window_days`` worth of events.
+
+        Returns totals, serious count, per-behavior breakdown, worst bay and
+        a one-line narrative the assistant turns into an operator briefing.
+        """
+        cutoff = (datetime.now(timezone.utc)
+                  - timedelta(days=max(0, window_days))).isoformat()
+        cond = "WHERE created_at >= ?"
+        params: tuple = (cutoff,)
+
+        totals_sql = (f"SELECT COUNT(*) AS n, "
+                      f"SUM(CASE WHEN risk_level IN ('high','critical') THEN 1 "
+                      f"ELSE 0 END) AS serious, "
+                      f"MAX(risk_score) AS max_risk, "
+                      f"AVG(risk_score) AS avg_risk, "
+                      f"COUNT(DISTINCT zone_id) AS zones_affected "
+                      f"FROM events {cond}")
+        with self.engine.connect() as conn:
+            total = conn.exec_driver_sql(totals_sql, params).fetchall()
+            cols = self._cols_rows(total)
+            tr = self._row(dict(zip(cols, total[0]))) if total else {}
+        # per-behavior breakdown
+        beh_sql = (f"SELECT behavior_class, COUNT(*) AS n, "
+                   f"AVG(risk_score) AS avg_risk FROM events {cond} "
+                   f"GROUP BY behavior_class ORDER BY n DESC LIMIT 10")
+        with self.engine.connect() as conn:
+            beh_rows = conn.exec_driver_sql(beh_sql, params).fetchall()
+            cols = self._cols_rows(beh_rows)
+            behaviors = [self._row(dict(zip(cols, r))) for r in beh_rows]
+        # worst bay
+        bay_sql = (f"SELECT zone_id, COUNT(*) AS n, MAX(risk_score) AS max_risk "
+                   f"FROM events {cond} GROUP BY zone_id ORDER BY max_risk DESC "
+                   f"LIMIT 5")
+        with self.engine.connect() as conn:
+            bay_rows = conn.exec_driver_sql(bay_sql, params).fetchall()
+            cols = self._cols_rows(bay_rows)
+            bays = [self._row(dict(zip(cols, r))) for r in bay_rows]
+
+        n = int(tr.get("n", 0) or 0)
+        serious = int(tr.get("serious", 0) or 0)
+        narrative = (
+            f"No events recorded in the last {window_days} day(s)."
+            if n == 0 else
+            f"{n} events logged, {serious} high/critical. "
+            f"Top behavior: {behaviors[0]['behavior_class'] if behaviors else 'none'} "
+            f"({behaviors[0]['n'] if behaviors else 0}x). "
+            f"Highest-risk bay: {bays[0]['zone_id'] if bays else 'none'} "
+            f"(max risk {bays[0]['max_risk'] if bays else 0:.2f})."
+        )
+        return {
+            "window_days": window_days,
+            "total_events": n,
+            "serious_count": serious,
+            "max_risk": round(float(tr.get("max_risk", 0) or 0), 3),
+            "avg_risk": round(float(tr.get("avg_risk", 0) or 0), 3),
+            "zones_affected": int(tr.get("zones_affected", 0) or 0),
+            "behaviors": behaviors,
+            "top_bays": bays,
+            "narrative": narrative,
+        }
+
+    def trend(self, window_days: int = 7) -> List[dict]:
+        """Daily risk aggregate over the window: the improvement-over-time series.
+
+        Returns a day-bucketed list [{day, events, serious, avg_risk}] newest
+        first, which the dashboards render as a line chart and the assistant
+        uses to say whether warehouse handling is improving or regressing.
+        """
+        cutoff = (datetime.now(timezone.utc)
+                  - timedelta(days=max(0, window_days))).isoformat()
+        # date() of created_at by substring; safe on PG and SQLite alike
+        sql = (f"SELECT substr(created_at,1,10) AS day, COUNT(*) AS n, "
+               f"SUM(CASE WHEN risk_level IN ('high','critical') THEN 1 ELSE 0 END) "
+               f"AS serious, AVG(risk_score) AS avg_risk "
+               f"FROM events WHERE created_at >= ? "
+               f"GROUP BY substr(created_at,1,10) ORDER BY day")
+        with self.engine.connect() as conn:
+            rows = conn.exec_driver_sql(sql, (cutoff,)).fetchall()
+            cols = self._cols_rows(rows)
+            return [self._row(dict(zip(cols, r))) for r in rows]
+
+    def recurring_behaviors(self, window_days: int = 7, min_occurrences: int = 2
+                            ) -> List[dict]:
+        """Behaviors that recur across the window (same behavior, multiple bays).
+
+        Distinct occurrences counted by (behavior_class, zone_id) to detect
+        *recurrence*, not just volume. ``recurring`` is True when a behavior
+        appears at >= min_occurrences distinct bays.
+        """
+        cutoff = (datetime.now(timezone.utc)
+                  - timedelta(days=max(0, window_days))).isoformat()
+        sql = (f"SELECT behavior_class, zone_id, COUNT(*) AS n, "
+               f"MAX(risk_score) AS max_risk, COUNT(DISTINCT DATE(created_at)) AS days "
+               f"FROM events WHERE created_at >= ? "
+               f"GROUP BY behavior_class, zone_id ORDER BY n DESC LIMIT 30")
+        with self.engine.connect() as conn:
+            rows = conn.exec_driver_sql(sql, (cutoff,)).fetchall()
+            cols = self._cols_rows(rows)
+            occ = [self._row(dict(zip(cols, r))) for r in rows]
+        # aggregate distinct-bay occurrences per behavior
+        by_class: Dict[str, dict] = {}
+        for o in occ:
+            d = by_class.setdefault(o["behavior_class"], {
+                "behavior_class": o["behavior_class"],
+                "occurrences": 0, "bays": set(), "max_risk": 0.0, "days": set(),
+            })
+            d["occurrences"] += int(o.get("n", 0) or 0)
+            d["bays"].add(o.get("zone_id", "bay_0"))
+            d["days"].add(o.get("days", 0))
+            d["max_risk"] = max(d["max_risk"], float(o.get("max_risk", 0) or 0))
+        out = []
+        for cls, d in by_class.items():
+            bays = sorted(d["bays"])
+            out.append({
+                "behavior_class": cls,
+                "occurrences": d["occurrences"],
+                "distinct_bays": len(bays),
+                "bays": bays,
+                "max_risk": round(d["max_risk"], 3),
+                "recurring": len(bays) >= min_occurrences,
+            })
+        return sorted(out, key=lambda x: -x["occurrences"])
+
+    # ------------------------------------------------------------------ utils
+
+    @classmethod
+    def _cols_rows(cls, rows: Any) -> List[str]:
+        return list(rows[0]._mapping.keys()) if rows else []
+
     # ------------------------------------------------------------------ utils
 
     @staticmethod
@@ -305,11 +437,88 @@ def explain_event(event_id: str) -> str:
         return f'{{"error": "query failed: {exc}"}}'
 
 
+@beta_tool
+def summarize_shift(time_range_days: int = 1) -> str:
+    """Summarize the last N days of events into a shift briefing.
+
+    Returns totals, serious-event count, an average risk figure, the top
+    behavior, the highest-risk bay, and a ready-to-read narrative.
+
+    Args:
+        time_range_days: number of days back to summarize.
+    """
+    if _STORE is None:
+        return "{}"
+    try:
+        return _dumps([_STORE.summarize_shift(time_range_days)])
+    except Exception as exc:
+        return f'{{"error": "query failed: {exc}"}}'
+
+
+@beta_tool
+def list_corrective_actions(behavior_class: str, risk_level: str = "medium") -> str:
+    """Get the recommended corrective action and training unit for a behavior.
+
+    Ever-present knowledge base: immediate action, process fix, and the
+    training module that targets the behavior.
+
+    Args:
+        behavior_class: one of the pipeline behavior classes.
+        risk_level: the event's risk level (high/critical auto-escalate).
+    """
+    try:
+        from pipeline.assistant.corrective_actions import recommend_for
+
+        rec = recommend_for(behavior_class, risk_level)
+        return _dumps([rec] if rec else [{"behavior_class": behavior_class,
+                                          "note": "no corrective action defined"}])
+    except Exception as exc:
+        return f'{{"error": "query failed: {exc}"}}'
+
+
+@beta_tool
+def query_trend_over_time(time_range_days: int = 7) -> str:
+    """Daily risk aggregate — the improvement-over-time trend.
+
+    Returns one row per day ({day, events, serious, avg_risk}). Use this to
+    say whether warehouse handling is improving or regressing.
+
+    Args:
+        time_range_days: window length in days.
+    """
+    if _STORE is None:
+        return "[]"
+    try:
+        return _dumps(_STORE.trend(time_range_days))
+    except Exception as exc:
+        return f'{{"error": "query failed: {exc}"}}'
+
+
+@beta_tool
+def query_recurring_behaviors(time_range_days: int = 7, min_occurrences: int = 2) -> str:
+    """Find behaviors that recur across bays in the window.
+
+    Args:
+        time_range_days: window length in days.
+        min_occurrences: minimum distinct bays for a behavior to be "recurring".
+    """
+    if _STORE is None:
+        return "[]"
+    try:
+        return _dumps(_STORE.recurring_behaviors(time_range_days, min_occurrences))
+    except Exception as exc:
+        return f'{{"error": "query failed: {exc}"}}'
+
+
 TOOLS = [
     query_high_risk_events,
     query_behavior_stats,
     query_bay_risk,
     explain_event,
+    summarize_shift,
+    list_corrective_actions,
+    query_trend_over_time,
+    query_recurring_behaviors,
 ]
 
 SYSTEM_PROMPT = (
