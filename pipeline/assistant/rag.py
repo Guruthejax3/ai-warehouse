@@ -77,7 +77,11 @@ class EventStore:
     """
 
     def __init__(self, db_url: Optional[str] = None,
-                 sqlite_path: str = "data/events.db") -> None:
+                 sqlite_path: Optional[str] = None) -> None:
+        # Align with the app's DB by default: honour REPLAYTWIN_DB_SQLITE, or
+        # fall back to the historical events.db used by the console tools.
+        sqlite_path = sqlite_path or os.environ.get(
+            "REPLAYTWIN_DB_SQLITE", "data/events.db")
         self.db_url = db_url
         self.sqlite_path = sqlite_path
         self.engine, self.is_sqlite = _connect(db_url, sqlite_path)
@@ -157,7 +161,7 @@ class EventStore:
                         min_level: str = "medium") -> List[dict]:
         """All events >= min_level within the last `days`."""
         cutoff = (datetime.now(timezone.utc)
-                  - timedelta(days=max(0, days))).isoformat()
+                  - timedelta(days=max(0, days))).strftime('%Y-%m-%d %H:%M:%S.%f')
         min_rank = self._LEVEL_RANK.get(min_level, 1)
         # Rank comparison in Python — the lexicographic TEXT order of the
         # levels ('critical' < 'medium') is the wrong order for a >= filter.
@@ -176,7 +180,7 @@ class EventStore:
                        days: int = DEFAULT_RANGE_DAYS) -> List[dict]:
         """Aggregate counts and average risk for one behaviour class."""
         cutoff = (datetime.now(timezone.utc)
-                  - timedelta(days=max(0, days))).isoformat()
+                  - timedelta(days=max(0, days))).strftime('%Y-%m-%d %H:%M:%S.%f')
         sql = ("SELECT behavior_class, COUNT(*) AS n, "
                "AVG(risk_score) AS avg_risk, "
                "SUM(CASE WHEN risk_level IN ('high','critical') THEN 1 ELSE 0 END) "
@@ -190,7 +194,7 @@ class EventStore:
     def bay_risk(self, bay_id: str, days: int = DEFAULT_RANGE_DAYS) -> List[dict]:
         """Events in a given bay/zone, newest first."""
         cutoff = (datetime.now(timezone.utc)
-                  - timedelta(days=max(0, days))).isoformat()
+                  - timedelta(days=max(0, days))).strftime('%Y-%m-%d %H:%M:%S.%f')
         sql = ("SELECT event_id, created_at, behavior_class, risk_score, "
                "risk_level, justification "
                "FROM events WHERE zone_id = ? AND created_at >= ? "
@@ -218,7 +222,7 @@ class EventStore:
         a one-line narrative the assistant turns into an operator briefing.
         """
         cutoff = (datetime.now(timezone.utc)
-                  - timedelta(days=max(0, window_days))).isoformat()
+                  - timedelta(days=max(0, window_days))).strftime('%Y-%m-%d %H:%M:%S.%f')
         cond = "WHERE created_at >= ?"
         params: tuple = (cutoff,)
 
@@ -281,7 +285,7 @@ class EventStore:
         uses to say whether warehouse handling is improving or regressing.
         """
         cutoff = (datetime.now(timezone.utc)
-                  - timedelta(days=max(0, window_days))).isoformat()
+                  - timedelta(days=max(0, window_days))).strftime('%Y-%m-%d %H:%M:%S.%f')
         # date() of created_at by substring; safe on PG and SQLite alike
         sql = (f"SELECT substr(created_at,1,10) AS day, COUNT(*) AS n, "
                f"SUM(CASE WHEN risk_level IN ('high','critical') THEN 1 ELSE 0 END) "
@@ -302,7 +306,7 @@ class EventStore:
         appears at >= min_occurrences distinct bays.
         """
         cutoff = (datetime.now(timezone.utc)
-                  - timedelta(days=max(0, window_days))).isoformat()
+                  - timedelta(days=max(0, window_days))).strftime('%Y-%m-%d %H:%M:%S.%f')
         sql = (f"SELECT behavior_class, zone_id, COUNT(*) AS n, "
                f"MAX(risk_score) AS max_risk, COUNT(DISTINCT DATE(created_at)) AS days "
                f"FROM events WHERE created_at >= ? "

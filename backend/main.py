@@ -567,7 +567,7 @@ async def zone_risk_aggregation(window_days: int = 7):
 
     store = EventStore()
     cutoff = (datetime.now(timezone.utc)
-              - timedelta(days=max(0, window_days))).isoformat()
+              - timedelta(days=max(0, window_days))).strftime('%Y-%m-%d %H:%M:%S.%f')
     sql = (
         "SELECT zone_id, COUNT(*) AS events, MAX(risk_score) AS max_risk, "
         "AVG(risk_score) AS avg_risk, "
@@ -742,7 +742,7 @@ async def digital_twin_state(window_days: int = 1):
 
     store = EventStore()
     cutoff = (datetime.now(timezone.utc)
-              - timedelta(days=max(0, window_days))).isoformat()
+              - timedelta(days=max(0, window_days))).strftime('%Y-%m-%d %H:%M:%S.%f')
 
     # Zone states from recent events
     sql = (
@@ -778,7 +778,7 @@ async def digital_twin_state(window_days: int = 1):
             }
 
     # Active hazards: high/critical events in the last hour
-    hour_ago = (datetime.now(timezone.utc) - timedelta(hours=1)).isoformat()
+    hour_ago = (datetime.now(timezone.utc) - timedelta(hours=1)).strftime('%Y-%m-%d %H:%M:%S.%f')
     hazard_sql = (
         "SELECT event_id, zone_id, behavior_class, risk_level, risk_score "
         "FROM events WHERE created_at >= ? AND risk_level IN ('high','critical') "
