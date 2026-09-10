@@ -21,6 +21,9 @@ CREATE TABLE IF NOT EXISTS events (
     evidence_clip_start INT,
     evidence_clip_end INT,
     evidence_clip_path TEXT,
+    activity_type TEXT,             -- loading | unloading | idle | transit
+    sequence_state TEXT,            -- current FSM step for sequence detection
+    shift_id TEXT,                  -- e.g. "shift_20260910_morning"
     metadata JSONB DEFAULT '{}'
 );
 
@@ -28,6 +31,8 @@ CREATE INDEX IF NOT EXISTS idx_events_behavior ON events(behavior_class);
 CREATE INDEX IF NOT EXISTS idx_events_risk ON events(risk_score);
 CREATE INDEX IF NOT EXISTS idx_events_created ON events(created_at);
 CREATE INDEX IF NOT EXISTS idx_events_level ON events(risk_level);
+CREATE INDEX IF NOT EXISTS idx_events_zone ON events(zone_id);
+CREATE INDEX IF NOT EXISTS idx_events_activity ON events(activity_type);
 
 -- Trajectories table: one row per tracked object per event
 CREATE TABLE IF NOT EXISTS trajectories (

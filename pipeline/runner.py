@@ -14,6 +14,7 @@ from __future__ import annotations
 
 import logging
 import sys
+import uuid
 from pathlib import Path
 from typing import Callable, Dict, List, Optional, Tuple
 
@@ -28,6 +29,7 @@ if str(ROOT) not in sys.path:
 
 from motion_detector import MotionDetector  # noqa: E402
 
+from pipeline.activity.classifier import ActivityClassifier  # noqa: E402
 from pipeline.config import load_config  # noqa: E402
 from pipeline.matching.dtw_matcher import DTWMatcher  # noqa: E402
 from pipeline.perception.pose import PoseEstimator  # noqa: E402
@@ -35,8 +37,14 @@ from pipeline.perception.segmentation import SegmentationTracker  # noqa: E402
 from pipeline.physics.kinematics import KinematicsAnalyzer  # noqa: E402
 from pipeline.risk.scoring import RiskScorer  # noqa: E402
 from pipeline.rules.zones import ZoneRuleChecker  # noqa: E402
+from pipeline.sequences.detector import SequenceDetector  # noqa: E402
 from pipeline.trajectory.builder import TrajectoryBuilder  # noqa: E402
-from pipeline.types import BehaviorMatch, RiskEvent, Trajectory  # noqa: E402
+from pipeline.types import (
+    BehaviorMatch,
+    PhysicsState,
+    RiskEvent,
+    Trajectory,
+)  # noqa: E402
 
 logger = logging.getLogger(__name__)
 
@@ -75,7 +83,17 @@ def _build_stages(cfg: Dict):
         evidence_trim_sec=int(cfg["risk"].get("evidence_trim_sec", 5)),
         target_fps=fps,
     )
-    return motion, seg, builder, matcher, physics, risk, zone_rule
+    activity = ActivityClassifier(
+        pixel_scale=float(cfg["physics"].get("pixel_scale", 0.01)),
+        dock_edge=cfg.get("activity", {}).get("dock_edge", "auto"),
+    )
+    sequence = SequenceDetector(
+        target_fps=fps,
+        truck_edge=cfg.get("activity", {}).get("dock_edge", "auto"),
+        enabled=bool(cfg.get("sequence", {}).get("enabled", True)),
+        pixel_scale=float(cfg["physics"].get("pixel_scale", 0.01)),
+    )
+    return motion, seg, builder, matcher, physics, risk, zone_rule, activity, sequence
 
 
 def process_clip(
@@ -98,7 +116,10 @@ def process_clip(
     cfg = cfg or load_config()
     fps = float(cfg["pipeline"]["target_fps"])
     pixel_scale = float(cfg["physics"].get("pixel_scale", 0.01))
-    motion, seg, builder, matcher, physics, risk, zone_rule = _build_stages(cfg)
+    (
+        motion, seg, builder, matcher, physics, risk, zone_rule, activity,
+        sequence,
+    ) = _build_stages(cfg)
 
     cap = cv2.VideoCapture(str(video_path))
     if not cap.isOpened():
@@ -138,10 +159,51 @@ def process_clip(
 
     trajectories = builder.finalize()
     events: List[RiskEvent] = []
+
+    # Sequence-of-actions detection: an unsafe loading chain (approach ->
+    # handle -> transit -> place) fires a dedicated sequence event. This runs
+    # over *all* sealed trajectories (multi-frame, multi-object evidence), not
+    # a single trajectory, satisfying the "sequence of actions" requirement.
+    hypotheses = sequence.detect(trajectories, frame_w, frame_h)
+    for hyp in hypotheses:
+        if not hyp.matched:
+            continue
+        last_ts = hyp.steps[-1]["end_sec"] if hyp.steps else 0.0
+        # Score like any other rule-driven event (physics already verified at
+        # the trajectory level; a full chain is inherently high-severity).
+        scored = risk.score_event(
+            source_video=str(video_path),
+            frame_idx=int(last_ts * fps),
+            timestamp_sec=last_ts,
+            behavior=BehaviorMatch(
+                behavior_class="unsafe_loading_sequence",
+                dtw_distance=0.0,
+                confidence=hyp.confidence,
+                exemplar_id="",
+                justification=hyp.justification,
+            ),
+            physics=PhysicsState(track_id=-1, physics_valid=True,
+                                 severity_score=0.7),
+            physics_ok=True,
+            fragility="standard",
+            zone_criticality=0.35,
+            rule_reason="sequence FSM fired: unsafe loading sequence "
+                        f"(steps observed: {[s['step'] for s in hyp.steps]})",
+        )
+        scored.metadata.update({
+            "sequence": hyp.hypothesis,
+            "steps": hyp.steps,
+            "order_respected": hyp.order_respected,
+            "sequence_confidence": round(hyp.confidence, 3),
+        })
+        events.append(scored)
+        if on_event:
+            on_event(scored)
     for traj in trajectories:
         behavior = matcher.match_trajectory(traj)
         ph = physics.analyze(traj)
         ok, reasons = physics.cross_check(behavior.behavior_class, ph)
+        act_type, act_conf, act_just = activity.classify(traj)
         ev = risk.score_event(
             source_video=str(video_path),
             frame_idx=int(traj.points[-1].frame_idx),
@@ -151,6 +213,10 @@ def process_clip(
             physics_ok=ok,
             physics_reasons=reasons,
         )
+        ev.activity_type = act_type
+        ev.metadata["activity_type"] = act_type
+        ev.metadata["activity_confidence"] = round(act_conf, 3)
+        ev.metadata["activity_justification"] = act_just
         events.append(ev)
         if on_event:
             on_event(ev)
@@ -175,6 +241,9 @@ def process_clip(
                 zone_criticality=zone_trigger["severity"],
                 rule_reason=zone_trigger["reason"],
             )
+            rule_ev.activity_type = act_type
+            rule_ev.metadata["activity_type"] = act_type
+            rule_ev.metadata["activity_justification"] = act_just
             events.append(rule_ev)
             if on_event:
                 on_event(rule_ev)

@@ -406,12 +406,17 @@ def _replay_for(row: models.Event) -> dict:
 
 @app.post("/api/voice/generate", response_model=VoiceResponse)
 async def voice_generate(req: VoiceRequest):
-    """Generate a coaching message for a behavior/level (TTS behind flag)."""
+    """Generate a coaching message for a behavior/level (TTS behind flag).
+
+    ``language`` selects the alert locale: en | hi | te | es (multilingual
+    voice alerts innovation feature). Spoken audio stays behind a flag.
+    """
     from pipeline.voice.coach import VoiceCoach
 
-    vc = VoiceCoach(enabled=False)
+    vc = VoiceCoach(enabled=False, language=req.language)
     msg = vc.build_message(
-        _pseudo_event(req.behavior_class, req.risk_level, req.physics_gated)
+        _pseudo_event(req.behavior_class, req.risk_level, req.physics_gated),
+        language=req.language,
     )
     return VoiceResponse(message=msg, spoken=req.speak and False)  # never auto-speak
 

@@ -64,6 +64,19 @@ zones:
       - [1.0, 1.0]
       - [0.0, 1.0]
 
+# Activity classification: infer loading / unloading / idle / transit from
+# trajectory direction. dock_edge = "auto" infers the dock from aspect ratio
+# (short axis faces the dock for overhead cameras).
+activity:
+  dock_edge: auto              # auto | top | bottom | left | right
+  min_displacement_m: 0.3      # below this + slow speed => idle
+  min_points: 5                # minimum trajectory points for classification
+
+# Sequence-of-actions detection: FSM over multi-frame trajectory windows.
+sequence:
+  enabled: true
+  min_step_frames: 2           # minimum samples a step must persist to count
+
 physics:
   mandatory_before_alert: true
   gravity: 9.81

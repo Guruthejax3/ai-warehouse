@@ -67,6 +67,8 @@ class Event(Base):
     evidence_clip_start: Mapped[Optional[int]] = mapped_column(Integer, nullable=True)
     evidence_clip_end: Mapped[Optional[int]] = mapped_column(Integer, nullable=True)
     evidence_clip_path: Mapped[Optional[str]] = mapped_column(Text, nullable=True)
+    activity_type: Mapped[Optional[str]] = mapped_column(String(16), nullable=True, index=True)
+    sequence_state: Mapped[Optional[str]] = mapped_column(String(64), nullable=True)
     zone_id: Mapped[str] = mapped_column(String(32), default="bay_0", index=True)
     metadata_json: Mapped[dict] = mapped_column("metadata", JSON, default=dict)
 

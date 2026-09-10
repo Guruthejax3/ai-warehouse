@@ -31,6 +31,7 @@ class VoiceRequest(BaseModel):
     risk_level: str = "medium"
     physics_gated: bool = False
     speak: bool = False  # response text only by default; TTS is behind a flag
+    language: str = "en"  # multilingual alerts: en | hi | te | es
 
 
 class VoiceResponse(BaseModel):
