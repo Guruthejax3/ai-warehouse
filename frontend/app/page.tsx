@@ -3,6 +3,12 @@ import BayHeatmap from "@/components/BayHeatmap";
 import BehaviorTrends from "@/components/BehaviorTrends";
 import SafetyScorecard from "@/components/SafetyScorecard";
 import AssistantPanel from "@/components/AssistantPanel";
+import EventTimeline from "@/components/EventTimeline";
+import ShiftSummary from "@/components/ShiftSummary";
+import TrendLineChart from "@/components/TrendLineChart";
+import TrainingPanel from "@/components/TrainingPanel";
+import DigitalTwinView from "@/components/DigitalTwinView";
+import RecurringBehaviors from "@/components/RecurringBehaviors";
 
 export default function Page() {
   return (
@@ -23,6 +29,14 @@ export default function Page() {
             <BayHeatmap />
             <BehaviorTrends />
           </div>
+          <EventTimeline />
+          <ShiftSummary />
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+            <TrendLineChart />
+            <RecurringBehaviors />
+          </div>
+          <DigitalTwinView />
+          <TrainingPanel />
         </div>
         <div className="flex min-h-96 flex-col">
           <AssistantPanel />

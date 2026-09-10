@@ -19,6 +19,7 @@ from __future__ import annotations
 import asyncio
 import logging
 from contextlib import asynccontextmanager
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from typing import Any, Dict, List, Optional
 
@@ -484,3 +485,316 @@ async def behaviors() -> dict:
     from pipeline.types import BEHAVIOR_CLASSES
 
     return {"behavior_classes": BEHAVIOR_CLASSES}
+
+
+@app.get("/api/evidence/{event_id}")
+async def serve_evidence_clip(event_id: str):
+    """Serve the face-blurred, trimmed evidence clip for an event."""
+    from fastapi.responses import FileResponse
+
+    db = next(get_db())
+    try:
+        row = db.query(models.Event).filter(models.Event.event_id == event_id).first()
+        if row is None or not row.evidence_clip_path:
+            raise HTTPException(404, "Evidence clip not found")
+        clip = Path(row.evidence_clip_path)
+        if not clip.exists():
+            raise HTTPException(404, "Evidence clip file not found on disk")
+        return FileResponse(str(clip), media_type="video/mp4")
+    finally:
+        db.close()
+
+
+# ---------------------------------------------------------------------------
+# Analytics endpoints — shift summary, trends, corrective actions, zone risk
+# ---------------------------------------------------------------------------
+
+@app.get("/api/analytics/shift-summary")
+async def shift_summary(window_days: int = 1):
+    """Shift briefing: totals, per-behavior breakdown, worst bay, narrative."""
+    from pipeline.assistant.rag import EventStore
+
+    store = EventStore()
+    return store.summarize_shift(window_days)
+
+
+@app.get("/api/analytics/trend")
+async def analytics_trend(window_days: int = 7):
+    """Daily risk aggregate — improvement-over-time line chart data."""
+    from pipeline.assistant.rag import EventStore
+
+    store = EventStore()
+    return {"days": store.trend(window_days), "window_days": window_days}
+
+
+@app.get("/api/analytics/recurring")
+async def analytics_recurring(window_days: int = 7, min_occurrences: int = 2):
+    """Behaviors that recur across bays — cross-bay pattern detection."""
+    from pipeline.assistant.rag import EventStore
+
+    store = EventStore()
+    return {"behaviors": store.recurring_behaviors(window_days, min_occurrences)}
+
+
+@app.get("/api/analytics/corrective-actions")
+async def list_all_corrective_actions():
+    """Full corrective action knowledge base (all 10 behavior classes)."""
+    from pipeline.assistant.corrective_actions import all_recommendations
+
+    return {"recommendations": all_recommendations()}
+
+
+class CorrectiveActionRequest(BaseModel):
+    behavior_class: str
+    risk_level: str = "medium"
+
+
+@app.post("/api/analytics/corrective-action")
+async def get_corrective_action(req: CorrectiveActionRequest):
+    """Corrective action for a specific behavior + risk level."""
+    from pipeline.assistant.corrective_actions import recommend_for
+
+    rec = recommend_for(req.behavior_class, req.risk_level)
+    if rec is None:
+        raise HTTPException(404, f"No corrective action for '{req.behavior_class}'")
+    return rec
+
+
+@app.get("/api/analytics/zone-risk")
+async def zone_risk_aggregation(window_days: int = 7):
+    """Risk-by-zone aggregation: sum, max, avg per bay for the heatmap."""
+    from pipeline.assistant.rag import EventStore
+
+    store = EventStore()
+    cutoff = (datetime.now(timezone.utc)
+              - timedelta(days=max(0, window_days))).isoformat()
+    sql = (
+        "SELECT zone_id, COUNT(*) AS events, MAX(risk_score) AS max_risk, "
+        "AVG(risk_score) AS avg_risk, "
+        "SUM(CASE WHEN risk_level IN ('high','critical') THEN 1 ELSE 0 END) "
+        "AS severe_count "
+        "FROM events WHERE created_at >= ? "
+        "GROUP BY zone_id ORDER BY max_risk DESC"
+    )
+    with store.engine.connect() as conn:
+        rows = conn.exec_driver_sql(sql, (cutoff,)).fetchall()
+        cols = list(rows[0]._mapping.keys()) if rows else []
+        zones = [dict(zip(cols, r)) for r in rows]
+    return {"zones": zones, "window_days": window_days}
+
+
+@app.get("/api/analytics/training")
+async def training_recommendations():
+    """Training recommendations: per-behavior training units with category."""
+    from pipeline.assistant.corrective_actions import CORRECTIVE_ACTIONS
+
+    training = []
+    for cls, action in CORRECTIVE_ACTIONS.items():
+        training.append({
+            "behavior_class": cls,
+            "training_unit": action["training_unit"],
+            "category": action["category"],
+            "process_fix": action["process_fix"],
+        })
+    return {"training_units": training}
+
+
+# ---------------------------------------------------------------------------
+# Innovation endpoints — damage prediction, incident reports, pallet stability
+# ---------------------------------------------------------------------------
+
+class DamagePredictionRequest(BaseModel):
+    risk_score: float = 0.5
+    behavior_class: str = "product_dropped"
+    fragility: str = "standard"
+    physics_severity: float = 0.0
+    confidence: float = 0.5
+    history_count: int = 0
+
+
+@app.post("/api/analytics/damage-prediction")
+async def damage_prediction(req: DamagePredictionRequest):
+    """Score the probability of product damage from event context."""
+    from pipeline.innovation.damage_prediction import predict_damage
+
+    return predict_damage(
+        risk_score=req.risk_score,
+        behavior_class=req.behavior_class,
+        fragility=req.fragility,
+        physics_severity=req.physics_severity,
+        confidence=req.confidence,
+        history_count=req.history_count,
+    ).__dict__
+
+
+class IncidentReportRequest(BaseModel):
+    event_id: str = ""
+    behavior_class: str = "product_dropped"
+    risk_level: str = "medium"
+    risk_score: float = 0.5
+    zone_id: str = "bay_0"
+    source_video: str = ""
+    timestamp_sec: float = 0.0
+    justification: str = ""
+    evidence_clip_path: str = ""
+    activity_type: str = "unknown"
+    confidence: Optional[float] = None
+
+
+@app.post("/api/analytics/incident-report")
+async def incident_report(req: IncidentReportRequest):
+    """Generate a structured incident report for one event."""
+    from pipeline.innovation.incident_report import (
+        generate_incident_report, report_to_dict,
+    )
+    from pipeline.assistant.corrective_actions import recommend_for
+
+    # Enrich with corrective action
+    ca = recommend_for(req.behavior_class, req.risk_level)
+
+    report = generate_incident_report(
+        event_id=req.event_id,
+        behavior_class=req.behavior_class,
+        risk_level=req.risk_level,
+        risk_score=req.risk_score,
+        zone_id=req.zone_id,
+        source_video=req.source_video,
+        timestamp_sec=req.timestamp_sec,
+        justification=req.justification,
+        evidence_clip_path=req.evidence_clip_path,
+        activity_type=req.activity_type,
+        confidence=req.confidence,
+        corrective_action=ca,
+    )
+    return report_to_dict(report)
+
+
+class PalletStabilityRequest(BaseModel):
+    trajectory_points: List[dict] = []
+    pixel_scale: float = 0.01
+
+
+@app.post("/api/pallet-stability")
+async def pallet_stability(req: PalletStabilityRequest):
+    """Assess pallet loading stability from trajectory physics."""
+    from pipeline.innovation.pallet_stability import assess_pallet_stability
+
+    if not req.trajectory_points:
+        raise HTTPException(400, "trajectory_points required")
+    result = assess_pallet_stability(req.trajectory_points, req.pixel_scale)
+    return result.__dict__
+
+
+class WMSAlertRequest(BaseModel):
+    event_id: str
+    behavior_class: str
+    risk_level: str = "medium"
+    risk_score: float = 0.5
+    zone_id: str = "bay_0"
+    justification: str = ""
+
+
+@app.post("/api/wms/webhook")
+async def wms_webhook(req: WMSAlertRequest):
+    """Build and return a WMS safety alert (outbound webhook payload)."""
+    from pipeline.innovation.wms_integration import build_wms_alert, alert_to_dict
+
+    alert = build_wms_alert(
+        event_id=req.event_id,
+        behavior_class=req.behavior_class,
+        risk_level=req.risk_level,
+        risk_score=req.risk_score,
+        zone_id=req.zone_id,
+        justification=req.justification,
+    )
+    return alert_to_dict(alert)
+
+
+class CCTVWebhookRequest(BaseModel):
+    source_camera: str = "cam_01"
+    event_type: str = "motion"
+    zone_id: str = "bay_0"
+    confidence: float = 0.5
+    metadata: dict = {}
+
+
+@app.post("/api/cctv/webhook")
+async def cctv_webhook(req: CCTVWebhookRequest):
+    """Parse an incoming CCTV/VMS event and return normalised data."""
+    from pipeline.innovation.wms_integration import parse_cctv_webhook, cctv_to_dict
+
+    event = parse_cctv_webhook(req.dict())
+    return cctv_to_dict(event)
+
+
+# ---------------------------------------------------------------------------
+# Digital twin — lightweight warehouse state endpoint
+# ---------------------------------------------------------------------------
+
+@app.get("/api/digital-twin")
+async def digital_twin_state(window_days: int = 1):
+    """Warehouse digital twin: zone states, active hazards, object positions.
+
+    Returns a lightweight state snapshot that the frontend renders as an
+    isometric 3D warehouse view with heat overlays and object markers.
+    """
+    from pipeline.assistant.rag import EventStore
+
+    store = EventStore()
+    cutoff = (datetime.now(timezone.utc)
+              - timedelta(days=max(0, window_days))).isoformat()
+
+    # Zone states from recent events
+    sql = (
+        "SELECT zone_id, COUNT(*) AS events, MAX(risk_score) AS max_risk, "
+        "AVG(risk_score) AS avg_risk "
+        "FROM events WHERE created_at >= ? "
+        "GROUP BY zone_id"
+    )
+    with store.engine.connect() as conn:
+        rows = conn.exec_driver_sql(sql, (cutoff,)).fetchall()
+        cols = list(rows[0]._mapping.keys()) if rows else []
+        zone_data = [dict(zip(cols, r)) for r in rows]
+
+    # Build zone states for all 8 bays
+    BAYS = [f"bay_{i}" for i in range(8)]
+    zones = {}
+    for bay in BAYS:
+        zd = next((z for z in zone_data if z["zone_id"] == bay), None)
+        if zd:
+            max_r = float(zd.get("max_risk", 0) or 0)
+            zones[bay] = {
+                "zone_id": bay,
+                "events": int(zd.get("events", 0) or 0),
+                "max_risk": round(max_r, 3),
+                "avg_risk": round(float(zd.get("avg_risk", 0) or 0), 3),
+                "status": ("critical" if max_r > 0.7 else
+                           "warning" if max_r > 0.4 else "normal"),
+            }
+        else:
+            zones[bay] = {
+                "zone_id": bay, "events": 0, "max_risk": 0.0,
+                "avg_risk": 0.0, "status": "normal",
+            }
+
+    # Active hazards: high/critical events in the last hour
+    hour_ago = (datetime.now(timezone.utc) - timedelta(hours=1)).isoformat()
+    hazard_sql = (
+        "SELECT event_id, zone_id, behavior_class, risk_level, risk_score "
+        "FROM events WHERE created_at >= ? AND risk_level IN ('high','critical') "
+        "ORDER BY risk_score DESC LIMIT 10"
+    )
+    with store.engine.connect() as conn:
+        hrows = conn.exec_driver_sql(hazard_sql, (hour_ago,)).fetchall()
+        hcols = list(hrows[0]._mapping.keys()) if hrows else []
+        hazards = [dict(zip(hcols, r)) for r in hrows]
+
+    return {
+        "zones": zones,
+        "active_hazards": hazards,
+        "total_events": sum(z["events"] for z in zones.values()),
+        "overall_risk": round(
+            max((z["max_risk"] for z in zones.values()), default=0.0), 3
+        ),
+        "window_days": window_days,
+    }

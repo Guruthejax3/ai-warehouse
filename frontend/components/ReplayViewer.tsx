@@ -151,6 +151,32 @@ export default function ReplayViewer({ eventId }: { eventId: string }) {
         <canvas ref={canvasRef} style={{ width: "100%", height: 320, display: "block" }} />
       </div>
 
+      {/* Evidence clip player (if available) */}
+      {event.evidence_clip_path && (
+        <div className="mt-3 rounded-lg border border-slate-200 bg-slate-50 p-2">
+          <p className="mb-1 text-[11px] font-medium text-slate-500">
+            Evidence clip (face-blurred, trimmed)
+          </p>
+          <video
+            controls
+            className="w-full rounded-md"
+            style={{ maxHeight: 200 }}
+            src={`http://localhost:8000/api/evidence/${event.event_id}`}
+          >
+            Your browser does not support video playback.
+          </video>
+        </div>
+      )}
+
+      {/* Activity + sequence metadata */}
+      {event.activity_type && event.activity_type !== "unknown" && (
+        <div className="mt-2 flex items-center gap-2 text-[11px] text-slate-500">
+          <span className="rounded bg-indigo-50 px-1.5 py-0.5 font-medium text-indigo-600">
+            activity: {event.activity_type}
+          </span>
+        </div>
+      )}
+
       <div className="mt-3 flex items-center gap-4 text-xs text-slate-500">
         <span className="flex items-center gap-1.5">
           <span className="h-2 w-2 rounded-full bg-red-600" /> actual
