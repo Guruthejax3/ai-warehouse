@@ -1,2 +1,27 @@
+# === Core CV Pipeline ===
 opencv-python>=4.9.0
 numpy>=1.26.0
+PyYAML>=6.0
+
+# === Matching ===
+fastdtw>=0.3.4
+
+# === Event store (assistant + backend) ===
+# SQLAlchemy 2.x for Postgres (primary) / SQLite (fallback)
+SQLAlchemy>=2.0
+
+# === RAG assistant (official Anthropic SDK) ===
+anthropic>=0.40.0
+
+# === Optional — only for --method raft ===
+# torch
+# torchvision
+
+# === Optional — MediaPipe pose estimation ===
+# mediapipe>=0.10.0
+
+# === Optional — SAM2 segmentation ===
+# segment-anything-2
+
+# === Optional — Voice coaching ===
+# pyttsx3

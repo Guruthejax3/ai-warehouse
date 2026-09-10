@@ -16,8 +16,22 @@ node_modules/
 # Data (folders tracked via .gitkeep)
 data/pilot_videos/*
 !data/pilot_videos/.gitkeep
+data/clips/*
+!data/clips/.gitkeep
 data/evidence_clips/*
 !data/evidence_clips/.gitkeep
+data/exemplars/*.json
+!data/exemplars/behaviors.json
+
+# Motion detection outputs (generated files)
+cv-pipeline/motion_detection/outputs/
+*.annotated.mp4
+
+# Runtime event DB (SQLite fallback) — regenerated, don't commit
+data/events.db
+data/events.db-*
+data/backend.db
+data/e2e.db
 
 # OS
 .DS_Store

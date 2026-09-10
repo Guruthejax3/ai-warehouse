@@ -1,0 +1,3654 @@
+{
+  "exemplars": [
+    {
+      "id": "product_dragged_seed_001",
+      "behavior_class": "product_dragged",
+      "label": "Product pulled along floor at steady low speed with slight lateral wobble",
+      "points": [
+        {
+          "frame_idx": 0,
+          "timestamp_sec": 0.0,
+          "x": 0.0,
+          "y": 0.0,
+          "z_est": 0.0,
+          "vx": 0.4,
+          "vy": 0.06
+        },
+        {
+          "frame_idx": 1,
+          "timestamp_sec": 0.2,
+          "x": 0.08,
+          "y": 0.012,
+          "z_est": 0.0,
+          "vx": 0.4,
+          "vy": 0.06
+        },
+        {
+          "frame_idx": 2,
+          "timestamp_sec": 0.4,
+          "x": 0.16,
+          "y": 0.024,
+          "z_est": 0.0,
+          "vx": 0.4,
+          "vy": 0.0599
+        },
+        {
+          "frame_idx": 3,
+          "timestamp_sec": 0.6,
+          "x": 0.24,
+          "y": 0.036,
+          "z_est": 0.0,
+          "vx": 0.4,
+          "vy": 0.0597
+        },
+        {
+          "frame_idx": 4,
+          "timestamp_sec": 0.8,
+          "x": 0.32,
+          "y": 0.0479,
+          "z_est": 0.0,
+          "vx": 0.4,
+          "vy": 0.0596
+        },
+        {
+          "frame_idx": 5,
+          "timestamp_sec": 1.0,
+          "x": 0.4,
+          "y": 0.0598,
+          "z_est": 0.0,
+          "vx": 0.4,
+          "vy": 0.0593
+        },
+        {
+          "frame_idx": 6,
+          "timestamp_sec": 1.2,
+          "x": 0.48,
+          "y": 0.0716,
+          "z_est": 0.0,
+          "vx": 0.4,
+          "vy": 0.059
+        },
+        {
+          "frame_idx": 7,
+          "timestamp_sec": 1.4,
+          "x": 0.56,
+          "y": 0.0834,
+          "z_est": 0.0,
+          "vx": 0.4,
+          "vy": 0.0587
+        },
+        {
+          "frame_idx": 8,
+          "timestamp_sec": 1.6,
+          "x": 0.64,
+          "y": 0.0951,
+          "z_est": 0.0,
+          "vx": 0.4,
+          "vy": 0.0583
+        },
+        {
+          "frame_idx": 9,
+          "timestamp_sec": 1.8,
+          "x": 0.72,
+          "y": 0.1067,
+          "z_est": 0.0,
+          "vx": 0.4,
+          "vy": 0.0578
+        },
+        {
+          "frame_idx": 10,
+          "timestamp_sec": 2.0,
+          "x": 0.8,
+          "y": 0.1182,
+          "z_est": 0.0,
+          "vx": 0.4,
+          "vy": 0.0573
+        },
+        {
+          "frame_idx": 11,
+          "timestamp_sec": 2.2,
+          "x": 0.88,
+          "y": 0.1296,
+          "z_est": 0.0,
+          "vx": 0.4,
+          "vy": 0.0568
+        },
+        {
+          "frame_idx": 12,
+          "timestamp_sec": 2.4,
+          "x": 0.96,
+          "y": 0.1409,
+          "z_est": 0.0,
+          "vx": 0.4,
+          "vy": 0.0561
+        },
+        {
+          "frame_idx": 13,
+          "timestamp_sec": 2.6,
+          "x": 1.04,
+          "y": 0.1521,
+          "z_est": 0.0,
+          "vx": 0.4,
+          "vy": 0.0555
+        },
+        {
+          "frame_idx": 14,
+          "timestamp_sec": 2.8,
+          "x": 1.12,
+          "y": 0.1631,
+          "z_est": 0.0,
+          "vx": 0.4,
+          "vy": 0.0548
+        },
+        {
+          "frame_idx": 15,
+          "timestamp_sec": 3.0,
+          "x": 1.2,
+          "y": 0.174,
+          "z_est": 0.0,
+          "vx": 0.4,
+          "vy": 0.054
+        },
+        {
+          "frame_idx": 16,
+          "timestamp_sec": 3.2,
+          "x": 1.28,
+          "y": 0.1847,
+          "z_est": 0.0,
+          "vx": 0.4,
+          "vy": 0.0532
+        },
+        {
+          "frame_idx": 17,
+          "timestamp_sec": 3.4,
+          "x": 1.36,
+          "y": 0.1953,
+          "z_est": 0.0,
+          "vx": 0.4,
+          "vy": 0.0524
+        },
+        {
+          "frame_idx": 18,
+          "timestamp_sec": 3.6,
+          "x": 1.44,
+          "y": 0.2057,
+          "z_est": 0.0,
+          "vx": 0.4,
+          "vy": 0.0515
+        },
+        {
+          "frame_idx": 19,
+          "timestamp_sec": 3.8,
+          "x": 1.52,
+          "y": 0.2159,
+          "z_est": 0.0,
+          "vx": 0.4,
+          "vy": 0.0505
+        },
+        {
+          "frame_idx": 20,
+          "timestamp_sec": 4.0,
+          "x": 1.6,
+          "y": 0.2259,
+          "z_est": 0.0,
+          "vx": 0.4,
+          "vy": 0.0495
+        },
+        {
+          "frame_idx": 21,
+          "timestamp_sec": 4.2,
+          "x": 1.68,
+          "y": 0.2357,
+          "z_est": 0.0,
+          "vx": 0.4,
+          "vy": 0.0485
+        },
+        {
+          "frame_idx": 22,
+          "timestamp_sec": 4.4,
+          "x": 1.76,
+          "y": 0.2452,
+          "z_est": 0.0,
+          "vx": 0.4,
+          "vy": 0.0474
+        },
+        {
+          "frame_idx": 23,
+          "timestamp_sec": 4.6,
+          "x": 1.84,
+          "y": 0.2546,
+          "z_est": 0.0,
+          "vx": 0.4,
+          "vy": 0.0463
+        },
+        {
+          "frame_idx": 24,
+          "timestamp_sec": 4.8,
+          "x": 1.92,
+          "y": 0.2638,
+          "z_est": 0.0,
+          "vx": 0.4,
+          "vy": 0.0451
+        },
+        {
+          "frame_idx": 25,
+          "timestamp_sec": 5.0,
+          "x": 2.0,
+          "y": 0.2727,
+          "z_est": 0.0,
+          "vx": 0.4,
+          "vy": 0.0439
+        },
+        {
+          "frame_idx": 26,
+          "timestamp_sec": 5.2,
+          "x": 2.08,
+          "y": 0.2813,
+          "z_est": 0.0,
+          "vx": 0.4,
+          "vy": 0.0426
+        },
+        {
+          "frame_idx": 27,
+          "timestamp_sec": 5.4,
+          "x": 2.16,
+          "y": 0.2897,
+          "z_est": 0.0,
+          "vx": 0.4,
+          "vy": 0.0414
+        },
+        {
+          "frame_idx": 28,
+          "timestamp_sec": 5.6,
+          "x": 2.24,
+          "y": 0.2979,
+          "z_est": 0.0,
+          "vx": 0.4,
+          "vy": 0.04
+        },
+        {
+          "frame_idx": 29,
+          "timestamp_sec": 5.8,
+          "x": 2.32,
+          "y": 0.3057,
+          "z_est": 0.0,
+          "vx": 0.4,
+          "vy": 0.0387
+        },
+        {
+          "frame_idx": 30,
+          "timestamp_sec": 6.0,
+          "x": 2.4,
+          "y": 0.3133,
+          "z_est": 0.0,
+          "vx": 0.4,
+          "vy": 0.0373
+        },
+        {
+          "frame_idx": 31,
+          "timestamp_sec": 6.2,
+          "x": 2.48,
+          "y": 0.3206,
+          "z_est": 0.0,
+          "vx": 0.4,
+          "vy": 0.0359
+        },
+        {
+          "frame_idx": 32,
+          "timestamp_sec": 6.4,
+          "x": 2.56,
+          "y": 0.3277,
+          "z_est": 0.0,
+          "vx": 0.4,
+          "vy": 0.0344
+        },
+        {
+          "frame_idx": 33,
+          "timestamp_sec": 6.6,
+          "x": 2.64,
+          "y": 0.3344,
+          "z_est": 0.0,
+          "vx": 0.4,
+          "vy": 0.0329
+        },
+        {
+          "frame_idx": 34,
+          "timestamp_sec": 6.8,
+          "x": 2.72,
+          "y": 0.3408,
+          "z_est": 0.0,
+          "vx": 0.4,
+          "vy": 0.0314
+        },
+        {
+          "frame_idx": 35,
+          "timestamp_sec": 7.0,
+          "x": 2.8,
+          "y": 0.347,
+          "z_est": 0.0,
+          "vx": 0.4,
+          "vy": 0.0298
+        },
+        {
+          "frame_idx": 36,
+          "timestamp_sec": 7.2,
+          "x": 2.88,
+          "y": 0.3528,
+          "z_est": 0.0,
+          "vx": 0.4,
+          "vy": 0.0283
+        },
+        {
+          "frame_idx": 37,
+          "timestamp_sec": 7.4,
+          "x": 2.96,
+          "y": 0.3583,
+          "z_est": 0.0,
+          "vx": 0.4,
+          "vy": 0.0267
+        },
+        {
+          "frame_idx": 38,
+          "timestamp_sec": 7.6,
+          "x": 3.04,
+          "y": 0.3635,
+          "z_est": 0.0,
+          "vx": 0.4,
+          "vy": 0.0251
+        },
+        {
+          "frame_idx": 39,
+          "timestamp_sec": 7.8,
+          "x": 3.12,
+          "y": 0.3683,
+          "z_est": 0.0,
+          "vx": 0.4,
+          "vy": 0.0242
+        }
+      ],
+      "source_clip": null,
+      "metadata": {
+        "fragility": "standard"
+      }
+    },
+    {
+      "id": "product_dropped_seed_001",
+      "behavior_class": "product_dropped",
+      "label": "Object falls vertically, accelerating, then stops abruptly on impact (estimated drop 1.2 m)",
+      "points": [
+        {
+          "frame_idx": 0,
+          "timestamp_sec": 0.0,
+          "x": 3.0,
+          "y": 4.0,
+          "z_est": 1.2,
+          "vx": 0.0,
+          "vy": 0.981
+        },
+        {
+          "frame_idx": 1,
+          "timestamp_sec": 0.2,
+          "x": 3.0,
+          "y": 4.1962,
+          "z_est": 1.0038,
+          "vx": 0.0,
+          "vy": 1.962
+        },
+        {
+          "frame_idx": 2,
+          "timestamp_sec": 0.4,
+          "x": 3.0,
+          "y": 4.7848,
+          "z_est": 0.4152,
+          "vx": 0.0,
+          "vy": 3.924
+        },
+        {
+          "frame_idx": 3,
+          "timestamp_sec": 0.6,
+          "x": 3.0,
+          "y": 5.7658,
+          "z_est": 0.0,
+          "vx": 0.0,
+          "vy": 5.886
+        },
+        {
+          "frame_idx": 4,
+          "timestamp_sec": 0.8,
+          "x": 3.0,
+          "y": 7.1392,
+          "z_est": 0.0,
+          "vx": 0.0,
+          "vy": 7.848
+        },
+        {
+          "frame_idx": 5,
+          "timestamp_sec": 1.0,
+          "x": 3.0,
+          "y": 8.905,
+          "z_est": 0.0,
+          "vx": 0.0,
+          "vy": 9.81
+        },
+        {
+          "frame_idx": 6,
+          "timestamp_sec": 1.2,
+          "x": 3.0,
+          "y": 11.0632,
+          "z_est": 0.0,
+          "vx": 0.0,
+          "vy": 11.772
+        },
+        {
+          "frame_idx": 7,
+          "timestamp_sec": 1.4,
+          "x": 3.0,
+          "y": 13.6138,
+          "z_est": 0.0,
+          "vx": 0.0,
+          "vy": 13.734
+        },
+        {
+          "frame_idx": 8,
+          "timestamp_sec": 1.6,
+          "x": 3.0,
+          "y": 16.5568,
+          "z_est": 0.0,
+          "vx": 0.0,
+          "vy": 15.696
+        },
+        {
+          "frame_idx": 9,
+          "timestamp_sec": 1.8,
+          "x": 3.0,
+          "y": 19.8922,
+          "z_est": 0.0,
+          "vx": 0.0,
+          "vy": 17.658
+        },
+        {
+          "frame_idx": 10,
+          "timestamp_sec": 2.0,
+          "x": 3.0,
+          "y": 23.62,
+          "z_est": 0.0,
+          "vx": 0.0,
+          "vy": 19.62
+        },
+        {
+          "frame_idx": 11,
+          "timestamp_sec": 2.2,
+          "x": 3.0,
+          "y": 27.7402,
+          "z_est": 0.0,
+          "vx": 0.0,
+          "vy": 21.582
+        },
+        {
+          "frame_idx": 12,
+          "timestamp_sec": 2.4,
+          "x": 3.0,
+          "y": 32.2528,
+          "z_est": 0.0,
+          "vx": 0.0,
+          "vy": 23.544
+        },
+        {
+          "frame_idx": 13,
+          "timestamp_sec": 2.6,
+          "x": 3.0,
+          "y": 37.1578,
+          "z_est": 0.0,
+          "vx": 0.0,
+          "vy": 25.506
+        },
+        {
+          "frame_idx": 14,
+          "timestamp_sec": 2.8,
+          "x": 3.0,
+          "y": 42.4552,
+          "z_est": 0.0,
+          "vx": 0.0,
+          "vy": 27.468
+        },
+        {
+          "frame_idx": 15,
+          "timestamp_sec": 3.0,
+          "x": 3.0,
+          "y": 48.145,
+          "z_est": 0.0,
+          "vx": 0.0,
+          "vy": 28.449
+        }
+      ],
+      "source_clip": null,
+      "metadata": {
+        "fragility": "fragile"
+      }
+    },
+    {
+      "id": "rough_handling_seed_001",
+      "behavior_class": "rough_handling",
+      "label": "Erratic jerky motion with repeated sharp direction changes and high acceleration peaks",
+      "points": [
+        {
+          "frame_idx": 0,
+          "timestamp_sec": 0.0,
+          "x": 2.0,
+          "y": 3.0,
+          "z_est": 0.0,
+          "vx": 1.9177,
+          "vy": 5.7813
+        },
+        {
+          "frame_idx": 1,
+          "timestamp_sec": 0.2,
+          "x": 2.3835,
+          "y": 4.1563,
+          "z_est": 0.0,
+          "vx": 1.6829,
+          "vy": 1.5465
+        },
+        {
+          "frame_idx": 2,
+          "timestamp_sec": 0.4,
+          "x": 2.6732,
+          "y": 3.6186,
+          "z_est": 0.0,
+          "vx": 1.0361,
+          "vy": -4.954
+        },
+        {
+          "frame_idx": 3,
+          "timestamp_sec": 0.6,
+          "x": 2.798,
+          "y": 2.1747,
+          "z_est": 0.0,
+          "vx": 0.1357,
+          "vy": -4.1969
+        },
+        {
+          "frame_idx": 4,
+          "timestamp_sec": 0.8,
+          "x": 2.7274,
+          "y": 1.9399,
+          "z_est": 0.0,
+          "vx": -0.798,
+          "vy": 2.7087
+        },
+        {
+          "frame_idx": 5,
+          "timestamp_sec": 1.0,
+          "x": 2.4788,
+          "y": 3.2581,
+          "z_est": 0.0,
+          "vx": -1.5364,
+          "vy": 5.646
+        },
+        {
+          "frame_idx": 6,
+          "timestamp_sec": 1.2,
+          "x": 2.1129,
+          "y": 4.1983,
+          "z_est": 0.0,
+          "vx": -1.8985,
+          "vy": 0.3119
+        },
+        {
+          "frame_idx": 7,
+          "timestamp_sec": 1.4,
+          "x": 1.7194,
+          "y": 3.3829,
+          "z_est": 0.0,
+          "vx": -1.7958,
+          "vy": -5.4791
+        },
+        {
+          "frame_idx": 8,
+          "timestamp_sec": 1.6,
+          "x": 1.3946,
+          "y": 2.0066,
+          "z_est": 0.0,
+          "vx": -1.2535,
+          "vy": -3.2432
+        },
+        {
+          "frame_idx": 9,
+          "timestamp_sec": 1.8,
+          "x": 1.218,
+          "y": 2.0856,
+          "z_est": 0.0,
+          "vx": -0.4042,
+          "vy": 3.744
+        },
+        {
+          "frame_idx": 10,
+          "timestamp_sec": 2.0,
+          "x": 1.2329,
+          "y": 3.5042,
+          "z_est": 0.0,
+          "vx": 0.544,
+          "vy": 5.2463
+        },
+        {
+          "frame_idx": 11,
+          "timestamp_sec": 2.2,
+          "x": 1.4356,
+          "y": 4.1841,
+          "z_est": 0.0,
+          "vx": 1.359,
+          "vy": -0.9372
+        },
+        {
+          "frame_idx": 12,
+          "timestamp_sec": 2.4,
+          "x": 1.7765,
+          "y": 3.1293,
+          "z_est": 0.0,
+          "vx": 1.8413,
+          "vy": -5.7477
+        },
+        {
+          "frame_idx": 13,
+          "timestamp_sec": 2.6,
+          "x": 2.1721,
+          "y": 1.8851,
+          "z_est": 0.0,
+          "vx": 1.8728,
+          "vy": -2.1378
+        },
+        {
+          "frame_idx": 14,
+          "timestamp_sec": 2.8,
+          "x": 2.5256,
+          "y": 2.2742,
+          "z_est": 0.0,
+          "vx": 1.4458,
+          "vy": 4.604
+        },
+        {
+          "frame_idx": 15,
+          "timestamp_sec": 3.0,
+          "x": 2.7504,
+          "y": 3.7266,
+          "z_est": 0.0,
+          "vx": 0.6647,
+          "vy": 4.6009
+        },
+        {
+          "frame_idx": 16,
+          "timestamp_sec": 3.2,
+          "x": 2.7915,
+          "y": 4.1146,
+          "z_est": 0.0,
+          "vx": -0.279,
+          "vy": -2.1425
+        },
+        {
+          "frame_idx": 17,
+          "timestamp_sec": 3.4,
+          "x": 2.6388,
+          "y": 2.8696,
+          "z_est": 0.0,
+          "vx": -1.1545,
+          "vy": -5.7471
+        },
+        {
+          "frame_idx": 18,
+          "timestamp_sec": 3.6,
+          "x": 2.3297,
+          "y": 1.8157,
+          "z_est": 0.0,
+          "vx": -1.7473,
+          "vy": -0.9322
+        },
+        {
+          "frame_idx": 19,
+          "timestamp_sec": 3.8,
+          "x": 1.9399,
+          "y": 2.4968,
+          "z_est": 0.0,
+          "vx": -1.9123,
+          "vy": 5.2484
+        },
+        {
+          "frame_idx": 20,
+          "timestamp_sec": 4.0,
+          "x": 1.5648,
+          "y": 3.9151,
+          "z_est": 0.0,
+          "vx": -1.6091,
+          "vy": 3.7401
+        },
+        {
+          "frame_idx": 21,
+          "timestamp_sec": 4.2,
+          "x": 1.2962,
+          "y": 3.9928,
+          "z_est": 0.0,
+          "vx": -0.9119,
+          "vy": -3.2475
+        },
+        {
+          "frame_idx": 22,
+          "timestamp_sec": 4.4,
+          "x": 1.2,
+          "y": 2.6161,
+          "z_est": 0.0,
+          "vx": 0.0085,
+          "vy": -5.4775
+        },
+        {
+          "frame_idx": 23,
+          "timestamp_sec": 4.6,
+          "x": 1.2996,
+          "y": 1.8018,
+          "z_est": 0.0,
+          "vx": 0.9268,
+          "vy": 0.3171
+        },
+        {
+          "frame_idx": 24,
+          "timestamp_sec": 4.8,
+          "x": 1.5707,
+          "y": 2.7429,
+          "z_est": 0.0,
+          "vx": 1.6183,
+          "vy": 5.6471
+        },
+        {
+          "frame_idx": 25,
+          "timestamp_sec": 5.0,
+          "x": 1.9469,
+          "y": 4.0606,
+          "z_est": 0.0,
+          "vx": 1.9135,
+          "vy": 2.7041
+        },
+        {
+          "frame_idx": 26,
+          "timestamp_sec": 5.2,
+          "x": 2.3361,
+          "y": 3.8245,
+          "z_est": 0.0,
+          "vx": 1.7402,
+          "vy": -4.2004
+        },
+        {
+          "frame_idx": 27,
+          "timestamp_sec": 5.4,
+          "x": 2.643,
+          "y": 2.3805,
+          "z_est": 0.0,
+          "vx": 1.1409,
+          "vy": -4.9513
+        },
+        {
+          "frame_idx": 28,
+          "timestamp_sec": 5.6,
+          "x": 2.7925,
+          "y": 1.844,
+          "z_est": 0.0,
+          "vx": 0.2622,
+          "vy": 1.5515
+        },
+        {
+          "frame_idx": 29,
+          "timestamp_sec": 5.8,
+          "x": 2.7479,
+          "y": 3.0011,
+          "z_est": 0.0,
+          "vx": -0.2228,
+          "vy": 5.7853
+        }
+      ],
+      "source_clip": null,
+      "metadata": {
+        "fragility": "fragile"
+      }
+    },
+    {
+      "id": "incorrect_stacking_seed_001",
+      "behavior_class": "incorrect_stacking",
+      "label": "Object lifted and set down onto an existing stack \u2014 heavy-on-light hazard in stacking zone",
+      "points": [
+        {
+          "frame_idx": 0,
+          "timestamp_sec": 0.0,
+          "x": 2.0,
+          "y": 2.0,
+          "z_est": 0.0,
+          "vx": 0.1318,
+          "vy": 0.6
+        },
+        {
+          "frame_idx": 1,
+          "timestamp_sec": 0.2,
+          "x": 2.0264,
+          "y": 2.12,
+          "z_est": 0.0,
+          "vx": 0.0931,
+          "vy": 0.6
+        },
+        {
+          "frame_idx": 2,
+          "timestamp_sec": 0.4,
+          "x": 2.0372,
+          "y": 2.24,
+          "z_est": 0.0,
+          "vx": 0.0126,
+          "vy": 0.6
+        },
+        {
+          "frame_idx": 3,
+          "timestamp_sec": 0.6,
+          "x": 2.0314,
+          "y": 2.36,
+          "z_est": 0.0,
+          "vx": -0.0357,
+          "vy": 0.6
+        },
+        {
+          "frame_idx": 4,
+          "timestamp_sec": 0.8,
+          "x": 2.023,
+          "y": 2.48,
+          "z_est": 0.0,
+          "vx": -0.0074,
+          "vy": 0.6
+        },
+        {
+          "frame_idx": 5,
+          "timestamp_sec": 1.0,
+          "x": 2.0284,
+          "y": 2.6,
+          "z_est": 0.0,
+          "vx": 0.0715,
+          "vy": 0.6
+        },
+        {
+          "frame_idx": 6,
+          "timestamp_sec": 1.2,
+          "x": 2.0516,
+          "y": 2.72,
+          "z_est": 0.0,
+          "vx": 0.1284,
+          "vy": 0.6
+        },
+        {
+          "frame_idx": 7,
+          "timestamp_sec": 1.4,
+          "x": 2.0798,
+          "y": 2.84,
+          "z_est": 0.0,
+          "vx": 0.1111,
+          "vy": 0.6
+        },
+        {
+          "frame_idx": 8,
+          "timestamp_sec": 1.6,
+          "x": 2.096,
+          "y": 2.96,
+          "z_est": 0.6,
+          "vx": 0.0354,
+          "vy": 0.6
+        },
+        {
+          "frame_idx": 9,
+          "timestamp_sec": 1.8,
+          "x": 2.094,
+          "y": 3.08,
+          "z_est": 0.6,
+          "vx": -0.029,
+          "vy": 0.6
+        },
+        {
+          "frame_idx": 10,
+          "timestamp_sec": 2.0,
+          "x": 2.0844,
+          "y": 3.2,
+          "z_est": 0.6,
+          "vx": -0.023,
+          "vy": 0.6
+        },
+        {
+          "frame_idx": 11,
+          "timestamp_sec": 2.2,
+          "x": 2.0848,
+          "y": 3.32,
+          "z_est": 0.6,
+          "vx": 0.048,
+          "vy": 0.6
+        },
+        {
+          "frame_idx": 12,
+          "timestamp_sec": 2.4,
+          "x": 2.1036,
+          "y": 3.44,
+          "z_est": 0.6,
+          "vx": 0.1186,
+          "vy": 0.6
+        },
+        {
+          "frame_idx": 13,
+          "timestamp_sec": 2.6,
+          "x": 2.1322,
+          "y": 3.56,
+          "z_est": 0.6,
+          "vx": 0.124,
+          "vy": 0.6
+        },
+        {
+          "frame_idx": 14,
+          "timestamp_sec": 2.8,
+          "x": 2.1531,
+          "y": 3.68,
+          "z_est": 0.6,
+          "vx": 0.0591,
+          "vy": 0.6
+        },
+        {
+          "frame_idx": 15,
+          "timestamp_sec": 3.0,
+          "x": 2.1559,
+          "y": 3.8,
+          "z_est": 0.6,
+          "vx": -0.0163,
+          "vy": 0.6
+        },
+        {
+          "frame_idx": 16,
+          "timestamp_sec": 3.2,
+          "x": 2.1466,
+          "y": 3.92,
+          "z_est": 0.6,
+          "vx": -0.033,
+          "vy": 0.6
+        },
+        {
+          "frame_idx": 17,
+          "timestamp_sec": 3.4,
+          "x": 2.1427,
+          "y": 4.04,
+          "z_est": 0.6,
+          "vx": 0.0245,
+          "vy": 0.6
+        },
+        {
+          "frame_idx": 18,
+          "timestamp_sec": 3.6,
+          "x": 2.1564,
+          "y": 4.16,
+          "z_est": 0.6,
+          "vx": 0.1032,
+          "vy": 0.6
+        },
+        {
+          "frame_idx": 19,
+          "timestamp_sec": 3.8,
+          "x": 2.1839,
+          "y": 4.28,
+          "z_est": 0.6,
+          "vx": 0.1308,
+          "vy": 0.6
+        },
+        {
+          "frame_idx": 20,
+          "timestamp_sec": 4.0,
+          "x": 2.2087,
+          "y": 4.4,
+          "z_est": 0.6,
+          "vx": 0.082,
+          "vy": 0.6
+        },
+        {
+          "frame_idx": 21,
+          "timestamp_sec": 4.2,
+          "x": 2.2167,
+          "y": 4.52,
+          "z_est": 0.6,
+          "vx": 0.04,
+          "vy": 0.6
+        }
+      ],
+      "source_clip": null,
+      "metadata": {
+        "fragility": "standard"
+      }
+    },
+    {
+      "id": "unstable_stacking_seed_001",
+      "behavior_class": "unstable_stacking",
+      "label": "Object oscillates increasingly while resting \u2014 unstable, top-heavy stack",
+      "points": [
+        {
+          "frame_idx": 0,
+          "timestamp_sec": 0.0,
+          "x": 5.0,
+          "y": 3.0,
+          "z_est": 0.0,
+          "vx": 0.749,
+          "vy": 0.5624
+        },
+        {
+          "frame_idx": 1,
+          "timestamp_sec": 0.2,
+          "x": 5.1498,
+          "y": 3.1125,
+          "z_est": 0.0,
+          "vx": 0.3033,
+          "vy": 0.0433
+        },
+        {
+          "frame_idx": 2,
+          "timestamp_sec": 0.4,
+          "x": 5.1213,
+          "y": 3.0173,
+          "z_est": 0.0,
+          "vx": -0.4655,
+          "vy": -0.0548
+        },
+        {
+          "frame_idx": 3,
+          "timestamp_sec": 0.6,
+          "x": 4.9636,
+          "y": 3.0906,
+          "z_est": 0.0,
+          "vx": -0.5769,
+          "vy": 0.5132
+        },
+        {
+          "frame_idx": 4,
+          "timestamp_sec": 0.8,
+          "x": 4.8906,
+          "y": 3.2226,
+          "z_est": 0.0,
+          "vx": 0.1112,
+          "vy": 0.0855
+        },
+        {
+          "frame_idx": 5,
+          "timestamp_sec": 1.0,
+          "x": 5.0081,
+          "y": 3.1248,
+          "z_est": 0.0,
+          "vx": 0.7212,
+          "vy": -0.1978
+        },
+        {
+          "frame_idx": 6,
+          "timestamp_sec": 1.2,
+          "x": 5.1791,
+          "y": 3.1435,
+          "z_est": 0.0,
+          "vx": 0.4753,
+          "vy": 0.3789
+        },
+        {
+          "frame_idx": 7,
+          "timestamp_sec": 1.4,
+          "x": 5.1982,
+          "y": 3.2763,
+          "z_est": 0.0,
+          "vx": -0.313,
+          "vy": 0.0835
+        },
+        {
+          "frame_idx": 8,
+          "timestamp_sec": 1.6,
+          "x": 5.0539,
+          "y": 3.1769,
+          "z_est": 0.0,
+          "vx": -0.6383,
+          "vy": -0.3541
+        },
+        {
+          "frame_idx": 9,
+          "timestamp_sec": 1.8,
+          "x": 4.9429,
+          "y": 3.1347,
+          "z_est": 0.0,
+          "vx": -0.0858,
+          "vy": 0.195
+        },
+        {
+          "frame_idx": 10,
+          "timestamp_sec": 2.0,
+          "x": 5.0195,
+          "y": 3.2549,
+          "z_est": 0.0,
+          "vx": 0.6399,
+          "vy": 0.0658
+        },
+        {
+          "frame_idx": 11,
+          "timestamp_sec": 2.2,
+          "x": 5.1988,
+          "y": 3.161,
+          "z_est": 0.0,
+          "vx": 0.6133,
+          "vy": -0.4806
+        },
+        {
+          "frame_idx": 12,
+          "timestamp_sec": 2.4,
+          "x": 5.2648,
+          "y": 3.0626,
+          "z_est": 0.0,
+          "vx": -0.1316,
+          "vy": 0.0078
+        },
+        {
+          "frame_idx": 13,
+          "timestamp_sec": 2.6,
+          "x": 5.1462,
+          "y": 3.1641,
+          "z_est": 0.0,
+          "vx": -0.645,
+          "vy": 0.0651
+        },
+        {
+          "frame_idx": 14,
+          "timestamp_sec": 2.8,
+          "x": 5.0069,
+          "y": 3.0887,
+          "z_est": 0.0,
+          "vx": -0.272,
+          "vy": -0.5373
+        },
+        {
+          "frame_idx": 15,
+          "timestamp_sec": 3.0,
+          "x": 5.0374,
+          "y": 2.9492,
+          "z_est": 0.0,
+          "vx": 0.5116,
+          "vy": -0.1406
+        },
+        {
+          "frame_idx": 16,
+          "timestamp_sec": 3.2,
+          "x": 5.2115,
+          "y": 3.0324,
+          "z_est": 0.0,
+          "vx": 0.7065,
+          "vy": 0.1051
+        },
+        {
+          "frame_idx": 17,
+          "timestamp_sec": 3.4,
+          "x": 5.32,
+          "y": 2.9912,
+          "z_est": 0.0,
+          "vx": 0.0642,
+          "vy": -0.5007
+        },
+        {
+          "frame_idx": 18,
+          "timestamp_sec": 3.6,
+          "x": 5.2372,
+          "y": 2.8322,
+          "z_est": 0.0,
+          "vx": -0.5962,
+          "vy": -0.2247
+        },
+        {
+          "frame_idx": 19,
+          "timestamp_sec": 3.8,
+          "x": 5.0815,
+          "y": 2.9013,
+          "z_est": 0.0,
+          "vx": -0.4326,
+          "vy": 0.1902
+        },
+        {
+          "frame_idx": 20,
+          "timestamp_sec": 4.0,
+          "x": 5.0642,
+          "y": 2.9082,
+          "z_est": 0.0,
+          "vx": 0.3465,
+          "vy": -0.3724
+        },
+        {
+          "frame_idx": 21,
+          "timestamp_sec": 4.2,
+          "x": 5.2201,
+          "y": 2.7524,
+          "z_est": 0.0,
+          "vx": 0.7474,
+          "vy": -0.2429
+        },
+        {
+          "frame_idx": 22,
+          "timestamp_sec": 4.4,
+          "x": 5.3631,
+          "y": 2.8111,
+          "z_est": 0.0,
+          "vx": 0.2589,
+          "vy": 0.3026
+        },
+        {
+          "frame_idx": 23,
+          "timestamp_sec": 4.6,
+          "x": 5.3237,
+          "y": 2.8734,
+          "z_est": 0.0,
+          "vx": -0.496,
+          "vy": -0.1795
+        },
+        {
+          "frame_idx": 24,
+          "timestamp_sec": 4.8,
+          "x": 5.1647,
+          "y": 2.7393,
+          "z_est": 0.0,
+          "vx": -0.5547,
+          "vy": -0.2154
+        },
+        {
+          "frame_idx": 25,
+          "timestamp_sec": 5.0,
+          "x": 5.1018,
+          "y": 2.7872,
+          "z_est": 0.0,
+          "vx": 0.1578,
+          "vy": 0.4073
+        },
+        {
+          "frame_idx": 26,
+          "timestamp_sec": 5.2,
+          "x": 5.2279,
+          "y": 2.9022,
+          "z_est": 0.0,
+          "vx": 0.7328,
+          "vy": 0.0338
+        },
+        {
+          "frame_idx": 27,
+          "timestamp_sec": 5.4,
+          "x": 5.3949,
+          "y": 2.8007,
+          "z_est": 0.0,
+          "vx": 0.437,
+          "vy": -0.1755
+        },
+        {
+          "frame_idx": 28,
+          "timestamp_sec": 5.6,
+          "x": 5.4027,
+          "y": 2.832,
+          "z_est": 0.0,
+          "vx": -0.3523,
+          "vy": 0.4644
+        },
+        {
+          "frame_idx": 29,
+          "timestamp_sec": 5.8,
+          "x": 5.254,
+          "y": 2.9865,
+          "z_est": 0.0,
+          "vx": -0.6286,
+          "vy": 0.2193
+        },
+        {
+          "frame_idx": 30,
+          "timestamp_sec": 6.0,
+          "x": 5.1512,
+          "y": 2.9197,
+          "z_est": 0.0,
+          "vx": -0.0395,
+          "vy": -0.1557
+        },
+        {
+          "frame_idx": 31,
+          "timestamp_sec": 6.2,
+          "x": 5.2382,
+          "y": 2.9242,
+          "z_est": 0.0,
+          "vx": 0.6638,
+          "vy": 0.4429
+        },
+        {
+          "frame_idx": 32,
+          "timestamp_sec": 6.4,
+          "x": 5.4167,
+          "y": 3.0969,
+          "z_est": 0.0,
+          "vx": 0.5842,
+          "vy": 0.3398
+        },
+        {
+          "frame_idx": 33,
+          "timestamp_sec": 6.6,
+          "x": 5.4719,
+          "y": 3.0602,
+          "z_est": 0.0,
+          "vx": -0.1766,
+          "vy": -0.1748
+        },
+        {
+          "frame_idx": 34,
+          "timestamp_sec": 6.8,
+          "x": 5.3461,
+          "y": 3.027,
+          "z_est": 0.0,
+          "vx": -0.6485,
+          "vy": 0.3328
+        },
+        {
+          "frame_idx": 35,
+          "timestamp_sec": 7.0,
+          "x": 5.2125,
+          "y": 3.1933,
+          "z_est": 0.0,
+          "vx": -0.2296,
+          "vy": 0.3801
+        },
+        {
+          "frame_idx": 36,
+          "timestamp_sec": 7.2,
+          "x": 5.2543,
+          "y": 3.179,
+          "z_est": 0.0,
+          "vx": 0.5458,
+          "vy": -0.2309
+        },
+        {
+          "frame_idx": 37,
+          "timestamp_sec": 7.4,
+          "x": 5.4308,
+          "y": 3.1009,
+          "z_est": 0.0,
+          "vx": 0.6889,
+          "vy": 0.1496
+        },
+        {
+          "frame_idx": 38,
+          "timestamp_sec": 7.6,
+          "x": 5.5298,
+          "y": 3.2389,
+          "z_est": 0.0,
+          "vx": 0.0172,
+          "vy": 0.3497
+        },
+        {
+          "frame_idx": 39,
+          "timestamp_sec": 7.8,
+          "x": 5.4377,
+          "y": 3.2408,
+          "z_est": 0.0,
+          "vx": -0.4605,
+          "vy": 0.0098
+        }
+      ],
+      "source_clip": null,
+      "metadata": {
+        "fragility": "very_fragile"
+      }
+    },
+    {
+      "id": "outside_designated_zone_seed_001",
+      "behavior_class": "outside_designated_zone",
+      "label": "Object travels past the designated storage boundary line and continues outside the zone",
+      "points": [
+        {
+          "frame_idx": 0,
+          "timestamp_sec": 0.0,
+          "x": 1.0,
+          "y": 4.0,
+          "z_est": 0.0,
+          "vx": 0.6,
+          "vy": 0.0749
+        },
+        {
+          "frame_idx": 1,
+          "timestamp_sec": 0.2,
+          "x": 1.12,
+          "y": 4.015,
+          "z_est": 0.0,
+          "vx": 0.6,
+          "vy": 0.0745
+        },
+        {
+          "frame_idx": 2,
+          "timestamp_sec": 0.4,
+          "x": 1.24,
+          "y": 4.0298,
+          "z_est": 0.0,
+          "vx": 0.6,
+          "vy": 0.0734
+        },
+        {
+          "frame_idx": 3,
+          "timestamp_sec": 0.6,
+          "x": 1.36,
+          "y": 4.0443,
+          "z_est": 0.0,
+          "vx": 0.6,
+          "vy": 0.0715
+        },
+        {
+          "frame_idx": 4,
+          "timestamp_sec": 0.8,
+          "x": 1.48,
+          "y": 4.0584,
+          "z_est": 0.0,
+          "vx": 0.6,
+          "vy": 0.069
+        },
+        {
+          "frame_idx": 5,
+          "timestamp_sec": 1.0,
+          "x": 1.6,
+          "y": 4.0719,
+          "z_est": 0.0,
+          "vx": 0.6,
+          "vy": 0.0657
+        },
+        {
+          "frame_idx": 6,
+          "timestamp_sec": 1.2,
+          "x": 1.72,
+          "y": 4.0847,
+          "z_est": 0.0,
+          "vx": 0.6,
+          "vy": 0.0618
+        },
+        {
+          "frame_idx": 7,
+          "timestamp_sec": 1.4,
+          "x": 1.84,
+          "y": 4.0966,
+          "z_est": 0.0,
+          "vx": 0.6,
+          "vy": 0.0573
+        },
+        {
+          "frame_idx": 8,
+          "timestamp_sec": 1.6,
+          "x": 1.96,
+          "y": 4.1076,
+          "z_est": 0.0,
+          "vx": 0.6,
+          "vy": 0.0522
+        },
+        {
+          "frame_idx": 9,
+          "timestamp_sec": 1.8,
+          "x": 2.08,
+          "y": 4.1175,
+          "z_est": 0.0,
+          "vx": 0.6,
+          "vy": 0.0465
+        },
+        {
+          "frame_idx": 10,
+          "timestamp_sec": 2.0,
+          "x": 2.2,
+          "y": 4.1262,
+          "z_est": 0.0,
+          "vx": 0.6,
+          "vy": 0.0405
+        },
+        {
+          "frame_idx": 11,
+          "timestamp_sec": 2.2,
+          "x": 2.32,
+          "y": 4.1337,
+          "z_est": 0.0,
+          "vx": 0.6,
+          "vy": 0.034
+        },
+        {
+          "frame_idx": 12,
+          "timestamp_sec": 2.4,
+          "x": 2.44,
+          "y": 4.1398,
+          "z_est": 0.0,
+          "vx": 0.6,
+          "vy": 0.0271
+        },
+        {
+          "frame_idx": 13,
+          "timestamp_sec": 2.6,
+          "x": 2.56,
+          "y": 4.1445,
+          "z_est": 0.0,
+          "vx": 0.6,
+          "vy": 0.02
+        },
+        {
+          "frame_idx": 14,
+          "timestamp_sec": 2.8,
+          "x": 2.68,
+          "y": 4.1478,
+          "z_est": 0.0,
+          "vx": 0.6,
+          "vy": 0.0127
+        },
+        {
+          "frame_idx": 15,
+          "timestamp_sec": 3.0,
+          "x": 2.8,
+          "y": 4.1496,
+          "z_est": 0.0,
+          "vx": 0.6,
+          "vy": 0.0053
+        },
+        {
+          "frame_idx": 16,
+          "timestamp_sec": 3.2,
+          "x": 2.92,
+          "y": 4.1499,
+          "z_est": 0.0,
+          "vx": 0.6,
+          "vy": -0.0022
+        },
+        {
+          "frame_idx": 17,
+          "timestamp_sec": 3.4,
+          "x": 3.04,
+          "y": 4.1487,
+          "z_est": 0.0,
+          "vx": 0.6,
+          "vy": -0.0096
+        },
+        {
+          "frame_idx": 18,
+          "timestamp_sec": 3.6,
+          "x": 3.16,
+          "y": 4.1461,
+          "z_est": 0.0,
+          "vx": 0.6,
+          "vy": -0.017
+        },
+        {
+          "frame_idx": 19,
+          "timestamp_sec": 3.8,
+          "x": 3.28,
+          "y": 4.1419,
+          "z_est": 0.0,
+          "vx": 0.6,
+          "vy": -0.0242
+        },
+        {
+          "frame_idx": 20,
+          "timestamp_sec": 4.0,
+          "x": 3.4,
+          "y": 4.1364,
+          "z_est": 0.0,
+          "vx": 0.6,
+          "vy": -0.0312
+        },
+        {
+          "frame_idx": 21,
+          "timestamp_sec": 4.2,
+          "x": 3.52,
+          "y": 4.1295,
+          "z_est": 0.0,
+          "vx": 0.6,
+          "vy": -0.0378
+        },
+        {
+          "frame_idx": 22,
+          "timestamp_sec": 4.4,
+          "x": 3.64,
+          "y": 4.1213,
+          "z_est": 0.0,
+          "vx": 0.6,
+          "vy": -0.0441
+        },
+        {
+          "frame_idx": 23,
+          "timestamp_sec": 4.6,
+          "x": 3.76,
+          "y": 4.1119,
+          "z_est": 0.0,
+          "vx": 0.6,
+          "vy": -0.0499
+        },
+        {
+          "frame_idx": 24,
+          "timestamp_sec": 4.8,
+          "x": 3.88,
+          "y": 4.1013,
+          "z_est": 0.0,
+          "vx": 0.6,
+          "vy": -0.0552
+        },
+        {
+          "frame_idx": 25,
+          "timestamp_sec": 5.0,
+          "x": 4.0,
+          "y": 4.0898,
+          "z_est": 0.0,
+          "vx": 0.6,
+          "vy": -0.06
+        },
+        {
+          "frame_idx": 26,
+          "timestamp_sec": 5.2,
+          "x": 4.12,
+          "y": 4.0773,
+          "z_est": 0.0,
+          "vx": 0.6,
+          "vy": -0.0642
+        },
+        {
+          "frame_idx": 27,
+          "timestamp_sec": 5.4,
+          "x": 4.24,
+          "y": 4.0641,
+          "z_est": 0.0,
+          "vx": 0.6,
+          "vy": -0.0677
+        },
+        {
+          "frame_idx": 28,
+          "timestamp_sec": 5.6,
+          "x": 4.36,
+          "y": 4.0502,
+          "z_est": 0.0,
+          "vx": 0.6,
+          "vy": -0.0705
+        },
+        {
+          "frame_idx": 29,
+          "timestamp_sec": 5.8,
+          "x": 4.48,
+          "y": 4.0359,
+          "z_est": 0.0,
+          "vx": 0.6,
+          "vy": -0.0727
+        },
+        {
+          "frame_idx": 30,
+          "timestamp_sec": 6.0,
+          "x": 4.6,
+          "y": 4.0212,
+          "z_est": 0.0,
+          "vx": 0.6,
+          "vy": -0.0741
+        },
+        {
+          "frame_idx": 31,
+          "timestamp_sec": 6.2,
+          "x": 4.72,
+          "y": 4.0062,
+          "z_est": 0.0,
+          "vx": 0.6,
+          "vy": -0.0748
+        },
+        {
+          "frame_idx": 32,
+          "timestamp_sec": 6.4,
+          "x": 4.84,
+          "y": 3.9912,
+          "z_est": 0.0,
+          "vx": 0.6,
+          "vy": -0.0747
+        },
+        {
+          "frame_idx": 33,
+          "timestamp_sec": 6.6,
+          "x": 4.96,
+          "y": 3.9763,
+          "z_est": 0.0,
+          "vx": 0.6,
+          "vy": -0.0739
+        },
+        {
+          "frame_idx": 34,
+          "timestamp_sec": 6.8,
+          "x": 5.08,
+          "y": 3.9617,
+          "z_est": 0.0,
+          "vx": 0.6,
+          "vy": -0.0724
+        },
+        {
+          "frame_idx": 35,
+          "timestamp_sec": 7.0,
+          "x": 5.2,
+          "y": 3.9474,
+          "z_est": 0.0,
+          "vx": 0.6,
+          "vy": -0.0701
+        },
+        {
+          "frame_idx": 36,
+          "timestamp_sec": 7.2,
+          "x": 5.32,
+          "y": 3.9336,
+          "z_est": 0.0,
+          "vx": 0.6,
+          "vy": -0.0671
+        },
+        {
+          "frame_idx": 37,
+          "timestamp_sec": 7.4,
+          "x": 5.44,
+          "y": 3.9205,
+          "z_est": 0.0,
+          "vx": 0.6,
+          "vy": -0.0635
+        },
+        {
+          "frame_idx": 38,
+          "timestamp_sec": 7.6,
+          "x": 5.56,
+          "y": 3.9082,
+          "z_est": 0.0,
+          "vx": 0.6,
+          "vy": -0.0592
+        },
+        {
+          "frame_idx": 39,
+          "timestamp_sec": 7.8,
+          "x": 5.68,
+          "y": 3.8968,
+          "z_est": 0.0,
+          "vx": 0.6,
+          "vy": -0.0544
+        },
+        {
+          "frame_idx": 40,
+          "timestamp_sec": 8.0,
+          "x": 5.8,
+          "y": 3.8865,
+          "z_est": 0.0,
+          "vx": 0.6,
+          "vy": -0.0489
+        },
+        {
+          "frame_idx": 41,
+          "timestamp_sec": 8.2,
+          "x": 5.92,
+          "y": 3.8773,
+          "z_est": 0.0,
+          "vx": 0.6,
+          "vy": -0.043
+        },
+        {
+          "frame_idx": 42,
+          "timestamp_sec": 8.4,
+          "x": 6.04,
+          "y": 3.8693,
+          "z_est": 0.0,
+          "vx": 0.6,
+          "vy": -0.0367
+        },
+        {
+          "frame_idx": 43,
+          "timestamp_sec": 8.6,
+          "x": 6.16,
+          "y": 3.8626,
+          "z_est": 0.0,
+          "vx": 0.6,
+          "vy": -0.03
+        },
+        {
+          "frame_idx": 44,
+          "timestamp_sec": 8.8,
+          "x": 6.28,
+          "y": 3.8573,
+          "z_est": 0.0,
+          "vx": 0.6,
+          "vy": -0.023
+        },
+        {
+          "frame_idx": 45,
+          "timestamp_sec": 9.0,
+          "x": 6.4,
+          "y": 3.8534,
+          "z_est": 0.0,
+          "vx": 0.6,
+          "vy": -0.0158
+        },
+        {
+          "frame_idx": 46,
+          "timestamp_sec": 9.2,
+          "x": 6.52,
+          "y": 3.8509,
+          "z_est": 0.0,
+          "vx": 0.6,
+          "vy": -0.0084
+        },
+        {
+          "frame_idx": 47,
+          "timestamp_sec": 9.4,
+          "x": 6.64,
+          "y": 3.85,
+          "z_est": 0.0,
+          "vx": 0.6,
+          "vy": -0.0009
+        },
+        {
+          "frame_idx": 48,
+          "timestamp_sec": 9.6,
+          "x": 6.76,
+          "y": 3.8506,
+          "z_est": 0.0,
+          "vx": 0.6,
+          "vy": 0.0066
+        },
+        {
+          "frame_idx": 49,
+          "timestamp_sec": 9.8,
+          "x": 6.88,
+          "y": 3.8526,
+          "z_est": 0.0,
+          "vx": 0.6,
+          "vy": 0.0103
+        }
+      ],
+      "source_clip": null,
+      "metadata": {
+        "fragility": "standard"
+      }
+    },
+    {
+      "id": "no_required_equipment_seed_001",
+      "behavior_class": "no_required_equipment",
+      "label": "Slow manual carry with repeated bending (no mechanical equipment in the motion path)",
+      "points": [
+        {
+          "frame_idx": 0,
+          "timestamp_sec": 0.0,
+          "x": 0.0,
+          "y": 1.5,
+          "z_est": 0.0,
+          "vx": 0.25,
+          "vy": 0.1499
+        },
+        {
+          "frame_idx": 1,
+          "timestamp_sec": 0.2,
+          "x": 0.05,
+          "y": 1.53,
+          "z_est": 0.0,
+          "vx": 0.25,
+          "vy": 0.1498
+        },
+        {
+          "frame_idx": 2,
+          "timestamp_sec": 0.4,
+          "x": 0.1,
+          "y": 1.5599,
+          "z_est": 0.0,
+          "vx": 0.25,
+          "vy": 0.1492
+        },
+        {
+          "frame_idx": 3,
+          "timestamp_sec": 0.6,
+          "x": 0.15,
+          "y": 1.5897,
+          "z_est": 0.0,
+          "vx": 0.25,
+          "vy": 0.1483
+        },
+        {
+          "frame_idx": 4,
+          "timestamp_sec": 0.8,
+          "x": 0.2,
+          "y": 1.6192,
+          "z_est": 0.0,
+          "vx": 0.25,
+          "vy": 0.1469
+        },
+        {
+          "frame_idx": 5,
+          "timestamp_sec": 1.0,
+          "x": 0.25,
+          "y": 1.6484,
+          "z_est": 0.0,
+          "vx": 0.25,
+          "vy": 0.1453
+        },
+        {
+          "frame_idx": 6,
+          "timestamp_sec": 1.2,
+          "x": 0.3,
+          "y": 1.6773,
+          "z_est": 0.0,
+          "vx": 0.25,
+          "vy": 0.1432
+        },
+        {
+          "frame_idx": 7,
+          "timestamp_sec": 1.4,
+          "x": 0.35,
+          "y": 1.7057,
+          "z_est": 0.0,
+          "vx": 0.25,
+          "vy": 0.1408
+        },
+        {
+          "frame_idx": 8,
+          "timestamp_sec": 1.6,
+          "x": 0.4,
+          "y": 1.7337,
+          "z_est": 0.0,
+          "vx": 0.25,
+          "vy": 0.1381
+        },
+        {
+          "frame_idx": 9,
+          "timestamp_sec": 1.8,
+          "x": 0.45,
+          "y": 1.761,
+          "z_est": 0.0,
+          "vx": 0.25,
+          "vy": 0.135
+        },
+        {
+          "frame_idx": 10,
+          "timestamp_sec": 2.0,
+          "x": 0.5,
+          "y": 1.7877,
+          "z_est": 0.0,
+          "vx": 0.25,
+          "vy": 0.1316
+        },
+        {
+          "frame_idx": 11,
+          "timestamp_sec": 2.2,
+          "x": 0.55,
+          "y": 1.8136,
+          "z_est": 0.0,
+          "vx": 0.25,
+          "vy": 0.1278
+        },
+        {
+          "frame_idx": 12,
+          "timestamp_sec": 2.4,
+          "x": 0.6,
+          "y": 1.8388,
+          "z_est": 0.0,
+          "vx": 0.25,
+          "vy": 0.1237
+        },
+        {
+          "frame_idx": 13,
+          "timestamp_sec": 2.6,
+          "x": 0.65,
+          "y": 1.8631,
+          "z_est": 0.0,
+          "vx": 0.25,
+          "vy": 0.1194
+        },
+        {
+          "frame_idx": 14,
+          "timestamp_sec": 2.8,
+          "x": 0.7,
+          "y": 1.8865,
+          "z_est": 0.0,
+          "vx": 0.25,
+          "vy": 0.1147
+        },
+        {
+          "frame_idx": 15,
+          "timestamp_sec": 3.0,
+          "x": 0.75,
+          "y": 1.909,
+          "z_est": 0.0,
+          "vx": 0.25,
+          "vy": 0.1097
+        },
+        {
+          "frame_idx": 16,
+          "timestamp_sec": 3.2,
+          "x": 0.8,
+          "y": 1.9304,
+          "z_est": 0.0,
+          "vx": 0.25,
+          "vy": 0.1045
+        },
+        {
+          "frame_idx": 17,
+          "timestamp_sec": 3.4,
+          "x": 0.85,
+          "y": 1.9508,
+          "z_est": 0.0,
+          "vx": 0.25,
+          "vy": 0.099
+        },
+        {
+          "frame_idx": 18,
+          "timestamp_sec": 3.6,
+          "x": 0.9,
+          "y": 1.97,
+          "z_est": 0.0,
+          "vx": 0.25,
+          "vy": 0.0932
+        },
+        {
+          "frame_idx": 19,
+          "timestamp_sec": 3.8,
+          "x": 0.95,
+          "y": 1.988,
+          "z_est": 0.0,
+          "vx": 0.25,
+          "vy": 0.0872
+        },
+        {
+          "frame_idx": 20,
+          "timestamp_sec": 4.0,
+          "x": 1.0,
+          "y": 2.0049,
+          "z_est": 0.0,
+          "vx": 0.25,
+          "vy": 0.081
+        },
+        {
+          "frame_idx": 21,
+          "timestamp_sec": 4.2,
+          "x": 1.05,
+          "y": 2.0205,
+          "z_est": 0.0,
+          "vx": 0.25,
+          "vy": 0.0746
+        },
+        {
+          "frame_idx": 22,
+          "timestamp_sec": 4.4,
+          "x": 1.1,
+          "y": 2.0347,
+          "z_est": 0.0,
+          "vx": 0.25,
+          "vy": 0.068
+        },
+        {
+          "frame_idx": 23,
+          "timestamp_sec": 4.6,
+          "x": 1.15,
+          "y": 2.0477,
+          "z_est": 0.0,
+          "vx": 0.25,
+          "vy": 0.0612
+        },
+        {
+          "frame_idx": 24,
+          "timestamp_sec": 4.8,
+          "x": 1.2,
+          "y": 2.0592,
+          "z_est": 0.0,
+          "vx": 0.25,
+          "vy": 0.0543
+        },
+        {
+          "frame_idx": 25,
+          "timestamp_sec": 5.0,
+          "x": 1.25,
+          "y": 2.0694,
+          "z_est": 0.0,
+          "vx": 0.25,
+          "vy": 0.0473
+        },
+        {
+          "frame_idx": 26,
+          "timestamp_sec": 5.2,
+          "x": 1.3,
+          "y": 2.0781,
+          "z_est": 0.0,
+          "vx": 0.25,
+          "vy": 0.0401
+        },
+        {
+          "frame_idx": 27,
+          "timestamp_sec": 5.4,
+          "x": 1.35,
+          "y": 2.0854,
+          "z_est": 0.0,
+          "vx": 0.25,
+          "vy": 0.0328
+        },
+        {
+          "frame_idx": 28,
+          "timestamp_sec": 5.6,
+          "x": 1.4,
+          "y": 2.0913,
+          "z_est": 0.0,
+          "vx": 0.25,
+          "vy": 0.0255
+        },
+        {
+          "frame_idx": 29,
+          "timestamp_sec": 5.8,
+          "x": 1.45,
+          "y": 2.0956,
+          "z_est": 0.0,
+          "vx": 0.25,
+          "vy": 0.0181
+        },
+        {
+          "frame_idx": 30,
+          "timestamp_sec": 6.0,
+          "x": 1.5,
+          "y": 2.0985,
+          "z_est": 0.0,
+          "vx": 0.25,
+          "vy": 0.0106
+        },
+        {
+          "frame_idx": 31,
+          "timestamp_sec": 6.2,
+          "x": 1.55,
+          "y": 2.0999,
+          "z_est": 0.0,
+          "vx": 0.25,
+          "vy": 0.0031
+        },
+        {
+          "frame_idx": 32,
+          "timestamp_sec": 6.4,
+          "x": 1.6,
+          "y": 2.0997,
+          "z_est": 0.0,
+          "vx": 0.25,
+          "vy": -0.0044
+        },
+        {
+          "frame_idx": 33,
+          "timestamp_sec": 6.6,
+          "x": 1.65,
+          "y": 2.0981,
+          "z_est": 0.0,
+          "vx": 0.25,
+          "vy": -0.0119
+        },
+        {
+          "frame_idx": 34,
+          "timestamp_sec": 6.8,
+          "x": 1.7,
+          "y": 2.095,
+          "z_est": 0.0,
+          "vx": 0.25,
+          "vy": -0.0193
+        },
+        {
+          "frame_idx": 35,
+          "timestamp_sec": 7.0,
+          "x": 1.75,
+          "y": 2.0904,
+          "z_est": 0.0,
+          "vx": 0.25,
+          "vy": -0.0267
+        },
+        {
+          "frame_idx": 36,
+          "timestamp_sec": 7.2,
+          "x": 1.8,
+          "y": 2.0843,
+          "z_est": 0.0,
+          "vx": 0.25,
+          "vy": -0.0341
+        },
+        {
+          "frame_idx": 37,
+          "timestamp_sec": 7.4,
+          "x": 1.85,
+          "y": 2.0768,
+          "z_est": 0.0,
+          "vx": 0.25,
+          "vy": -0.0413
+        },
+        {
+          "frame_idx": 38,
+          "timestamp_sec": 7.6,
+          "x": 1.9,
+          "y": 2.0678,
+          "z_est": 0.0,
+          "vx": 0.25,
+          "vy": -0.0485
+        },
+        {
+          "frame_idx": 39,
+          "timestamp_sec": 7.8,
+          "x": 1.95,
+          "y": 2.0574,
+          "z_est": 0.0,
+          "vx": 0.25,
+          "vy": -0.0555
+        },
+        {
+          "frame_idx": 40,
+          "timestamp_sec": 8.0,
+          "x": 2.0,
+          "y": 2.0456,
+          "z_est": 0.0,
+          "vx": 0.25,
+          "vy": -0.0624
+        },
+        {
+          "frame_idx": 41,
+          "timestamp_sec": 8.2,
+          "x": 2.05,
+          "y": 2.0324,
+          "z_est": 0.0,
+          "vx": 0.25,
+          "vy": -0.0691
+        },
+        {
+          "frame_idx": 42,
+          "timestamp_sec": 8.4,
+          "x": 2.1,
+          "y": 2.0179,
+          "z_est": 0.0,
+          "vx": 0.25,
+          "vy": -0.0757
+        },
+        {
+          "frame_idx": 43,
+          "timestamp_sec": 8.6,
+          "x": 2.15,
+          "y": 2.0021,
+          "z_est": 0.0,
+          "vx": 0.25,
+          "vy": -0.0821
+        },
+        {
+          "frame_idx": 44,
+          "timestamp_sec": 8.8,
+          "x": 2.2,
+          "y": 1.9851,
+          "z_est": 0.0,
+          "vx": 0.25,
+          "vy": -0.0852
+        }
+      ],
+      "source_clip": null,
+      "metadata": {
+        "fragility": "standard"
+      }
+    },
+    {
+      "id": "pallet_mispositioned_seed_001",
+      "behavior_class": "pallet_mispositioned",
+      "label": "Pallet travels and stops misaligned relative to the expected dock mark, angled from the guide line",
+      "points": [
+        {
+          "frame_idx": 0,
+          "timestamp_sec": 0.0,
+          "x": 0.0,
+          "y": 2.5,
+          "z_est": 0.0,
+          "vx": 0.5,
+          "vy": 0.1199
+        },
+        {
+          "frame_idx": 1,
+          "timestamp_sec": 0.2,
+          "x": 0.1,
+          "y": 2.524,
+          "z_est": 0.0,
+          "vx": 0.5,
+          "vy": 0.1195
+        },
+        {
+          "frame_idx": 2,
+          "timestamp_sec": 0.4,
+          "x": 0.2,
+          "y": 2.5478,
+          "z_est": 0.0,
+          "vx": 0.5,
+          "vy": 0.1183
+        },
+        {
+          "frame_idx": 3,
+          "timestamp_sec": 0.6,
+          "x": 0.3,
+          "y": 2.5713,
+          "z_est": 0.0,
+          "vx": 0.5,
+          "vy": 0.1164
+        },
+        {
+          "frame_idx": 4,
+          "timestamp_sec": 0.8,
+          "x": 0.4,
+          "y": 2.5944,
+          "z_est": 0.0,
+          "vx": 0.5,
+          "vy": 0.1138
+        },
+        {
+          "frame_idx": 5,
+          "timestamp_sec": 1.0,
+          "x": 0.5,
+          "y": 2.6168,
+          "z_est": 0.0,
+          "vx": 0.5,
+          "vy": 0.1104
+        },
+        {
+          "frame_idx": 6,
+          "timestamp_sec": 1.2,
+          "x": 0.6,
+          "y": 2.6385,
+          "z_est": 0.0,
+          "vx": 0.5,
+          "vy": 0.1063
+        },
+        {
+          "frame_idx": 7,
+          "timestamp_sec": 1.4,
+          "x": 0.7,
+          "y": 2.6594,
+          "z_est": 0.0,
+          "vx": 0.5,
+          "vy": 0.1016
+        },
+        {
+          "frame_idx": 8,
+          "timestamp_sec": 1.6,
+          "x": 0.8,
+          "y": 2.6792,
+          "z_est": 0.0,
+          "vx": 0.5,
+          "vy": 0.0961
+        },
+        {
+          "frame_idx": 9,
+          "timestamp_sec": 1.8,
+          "x": 0.9,
+          "y": 2.6978,
+          "z_est": 0.0,
+          "vx": 0.5,
+          "vy": 0.0901
+        },
+        {
+          "frame_idx": 10,
+          "timestamp_sec": 2.0,
+          "x": 1.0,
+          "y": 2.7152,
+          "z_est": 0.0,
+          "vx": 0.5,
+          "vy": 0.0835
+        },
+        {
+          "frame_idx": 11,
+          "timestamp_sec": 2.2,
+          "x": 1.1,
+          "y": 2.7312,
+          "z_est": 0.0,
+          "vx": 0.5,
+          "vy": 0.0764
+        },
+        {
+          "frame_idx": 12,
+          "timestamp_sec": 2.4,
+          "x": 1.2,
+          "y": 2.7458,
+          "z_est": 0.0,
+          "vx": 0.5,
+          "vy": 0.0687
+        },
+        {
+          "frame_idx": 13,
+          "timestamp_sec": 2.6,
+          "x": 1.3,
+          "y": 2.7587,
+          "z_est": 0.0,
+          "vx": 0.5,
+          "vy": 0.0607
+        },
+        {
+          "frame_idx": 14,
+          "timestamp_sec": 2.8,
+          "x": 1.4,
+          "y": 2.77,
+          "z_est": 0.0,
+          "vx": 0.5,
+          "vy": 0.0522
+        },
+        {
+          "frame_idx": 15,
+          "timestamp_sec": 3.0,
+          "x": 1.5,
+          "y": 2.7796,
+          "z_est": 0.0,
+          "vx": 0.5,
+          "vy": 0.0434
+        },
+        {
+          "frame_idx": 16,
+          "timestamp_sec": 3.2,
+          "x": 1.6,
+          "y": 2.7874,
+          "z_est": 0.0,
+          "vx": 0.5,
+          "vy": 0.0344
+        },
+        {
+          "frame_idx": 17,
+          "timestamp_sec": 3.4,
+          "x": 1.7,
+          "y": 2.7934,
+          "z_est": 0.0,
+          "vx": 0.5,
+          "vy": 0.0251
+        },
+        {
+          "frame_idx": 18,
+          "timestamp_sec": 3.6,
+          "x": 1.8,
+          "y": 2.7974,
+          "z_est": 0.0,
+          "vx": 0.5,
+          "vy": 0.0156
+        },
+        {
+          "frame_idx": 19,
+          "timestamp_sec": 3.8,
+          "x": 1.9,
+          "y": 2.7996,
+          "z_est": 0.0,
+          "vx": 0.5,
+          "vy": 0.0061
+        },
+        {
+          "frame_idx": 20,
+          "timestamp_sec": 4.0,
+          "x": 2.0,
+          "y": 2.7999,
+          "z_est": 0.0,
+          "vx": 0.5,
+          "vy": -0.0035
+        },
+        {
+          "frame_idx": 21,
+          "timestamp_sec": 4.2,
+          "x": 2.1,
+          "y": 2.7982,
+          "z_est": 0.0,
+          "vx": 0.5,
+          "vy": -0.0131
+        },
+        {
+          "frame_idx": 22,
+          "timestamp_sec": 4.4,
+          "x": 2.2,
+          "y": 2.7946,
+          "z_est": 0.0,
+          "vx": 0.5,
+          "vy": -0.0225
+        },
+        {
+          "frame_idx": 23,
+          "timestamp_sec": 4.6,
+          "x": 2.3,
+          "y": 2.7892,
+          "z_est": 0.0,
+          "vx": 0.5,
+          "vy": -0.0319
+        },
+        {
+          "frame_idx": 24,
+          "timestamp_sec": 4.8,
+          "x": 2.4,
+          "y": 2.7819,
+          "z_est": 0.0,
+          "vx": 0.5,
+          "vy": -0.041
+        },
+        {
+          "frame_idx": 25,
+          "timestamp_sec": 5.0,
+          "x": 2.5,
+          "y": 2.7728,
+          "z_est": 0.0,
+          "vx": 0.5,
+          "vy": -0.0499
+        },
+        {
+          "frame_idx": 26,
+          "timestamp_sec": 5.2,
+          "x": 2.6,
+          "y": 2.7619,
+          "z_est": 0.0,
+          "vx": 0.5,
+          "vy": -0.0584
+        },
+        {
+          "frame_idx": 27,
+          "timestamp_sec": 5.4,
+          "x": 2.7,
+          "y": 2.7494,
+          "z_est": 0.0,
+          "vx": 0.5,
+          "vy": -0.0666
+        },
+        {
+          "frame_idx": 28,
+          "timestamp_sec": 5.6,
+          "x": 2.8,
+          "y": 2.7353,
+          "z_est": 0.0,
+          "vx": 0.5,
+          "vy": -0.0744
+        },
+        {
+          "frame_idx": 29,
+          "timestamp_sec": 5.8,
+          "x": 2.9,
+          "y": 2.7197,
+          "z_est": 0.0,
+          "vx": 0.5,
+          "vy": -0.0816
+        },
+        {
+          "frame_idx": 30,
+          "timestamp_sec": 6.0,
+          "x": 3.0,
+          "y": 2.7026,
+          "z_est": 0.0,
+          "vx": 0.5,
+          "vy": -0.0884
+        },
+        {
+          "frame_idx": 31,
+          "timestamp_sec": 6.2,
+          "x": 3.1,
+          "y": 2.6843,
+          "z_est": 0.0,
+          "vx": 0.5,
+          "vy": -0.0946
+        },
+        {
+          "frame_idx": 32,
+          "timestamp_sec": 6.4,
+          "x": 3.2,
+          "y": 2.6648,
+          "z_est": 0.0,
+          "vx": 0.5,
+          "vy": -0.1002
+        },
+        {
+          "frame_idx": 33,
+          "timestamp_sec": 6.6,
+          "x": 3.3,
+          "y": 2.6442,
+          "z_est": 0.0,
+          "vx": 0.5,
+          "vy": -0.1051
+        },
+        {
+          "frame_idx": 34,
+          "timestamp_sec": 6.8,
+          "x": 3.4,
+          "y": 2.6228,
+          "z_est": 0.0,
+          "vx": 0.5,
+          "vy": -0.1094
+        },
+        {
+          "frame_idx": 35,
+          "timestamp_sec": 7.0,
+          "x": 3.5,
+          "y": 2.6005,
+          "z_est": 0.0,
+          "vx": 0.5,
+          "vy": -0.1129
+        },
+        {
+          "frame_idx": 36,
+          "timestamp_sec": 7.2,
+          "x": 3.6,
+          "y": 2.5776,
+          "z_est": 0.0,
+          "vx": 0.5,
+          "vy": -0.1158
+        },
+        {
+          "frame_idx": 37,
+          "timestamp_sec": 7.4,
+          "x": 3.7,
+          "y": 2.5542,
+          "z_est": 0.0,
+          "vx": 0.5,
+          "vy": -0.1179
+        },
+        {
+          "frame_idx": 38,
+          "timestamp_sec": 7.6,
+          "x": 3.8,
+          "y": 2.5304,
+          "z_est": 0.0,
+          "vx": 0.5,
+          "vy": -0.1193
+        },
+        {
+          "frame_idx": 39,
+          "timestamp_sec": 7.8,
+          "x": 3.9,
+          "y": 2.5065,
+          "z_est": 0.0,
+          "vx": 0.5,
+          "vy": -0.1198
+        },
+        {
+          "frame_idx": 40,
+          "timestamp_sec": 8.0,
+          "x": 4.0,
+          "y": 2.4825,
+          "z_est": 0.0,
+          "vx": 0.5,
+          "vy": -0.1197
+        },
+        {
+          "frame_idx": 41,
+          "timestamp_sec": 8.2,
+          "x": 4.1,
+          "y": 2.4586,
+          "z_est": 0.0,
+          "vx": 0.5,
+          "vy": -0.1187
+        },
+        {
+          "frame_idx": 42,
+          "timestamp_sec": 8.4,
+          "x": 4.2,
+          "y": 2.435,
+          "z_est": 0.0,
+          "vx": 0.5,
+          "vy": -0.117
+        },
+        {
+          "frame_idx": 43,
+          "timestamp_sec": 8.6,
+          "x": 4.3,
+          "y": 2.4118,
+          "z_est": 0.0,
+          "vx": 0.5,
+          "vy": -0.1146
+        },
+        {
+          "frame_idx": 44,
+          "timestamp_sec": 8.8,
+          "x": 4.4,
+          "y": 2.3892,
+          "z_est": 0.0,
+          "vx": 0.25,
+          "vy": -0.1114
+        },
+        {
+          "frame_idx": 45,
+          "timestamp_sec": 9.0,
+          "x": 4.4,
+          "y": 2.3672,
+          "z_est": 0.0,
+          "vx": 0.0,
+          "vy": -0.1075
+        },
+        {
+          "frame_idx": 46,
+          "timestamp_sec": 9.2,
+          "x": 4.4,
+          "y": 2.3462,
+          "z_est": 0.0,
+          "vx": 0.0,
+          "vy": -0.1029
+        },
+        {
+          "frame_idx": 47,
+          "timestamp_sec": 9.4,
+          "x": 4.4,
+          "y": 2.3261,
+          "z_est": 0.0,
+          "vx": 0.0,
+          "vy": -0.0977
+        },
+        {
+          "frame_idx": 48,
+          "timestamp_sec": 9.6,
+          "x": 4.4,
+          "y": 2.3071,
+          "z_est": 0.0,
+          "vx": 0.0,
+          "vy": -0.0918
+        },
+        {
+          "frame_idx": 49,
+          "timestamp_sec": 9.8,
+          "x": 4.4,
+          "y": 2.2894,
+          "z_est": 0.0,
+          "vx": 0.0,
+          "vy": -0.0854
+        },
+        {
+          "frame_idx": 50,
+          "timestamp_sec": 10.0,
+          "x": 4.4,
+          "y": 2.273,
+          "z_est": 0.0,
+          "vx": 0.0,
+          "vy": -0.0784
+        },
+        {
+          "frame_idx": 51,
+          "timestamp_sec": 10.2,
+          "x": 4.4,
+          "y": 2.258,
+          "z_est": 0.0,
+          "vx": 0.0,
+          "vy": -0.0709
+        },
+        {
+          "frame_idx": 52,
+          "timestamp_sec": 10.4,
+          "x": 4.4,
+          "y": 2.2446,
+          "z_est": 0.0,
+          "vx": 0.0,
+          "vy": -0.0629
+        },
+        {
+          "frame_idx": 53,
+          "timestamp_sec": 10.6,
+          "x": 4.4,
+          "y": 2.2329,
+          "z_est": 0.0,
+          "vx": 0.0,
+          "vy": -0.0545
+        },
+        {
+          "frame_idx": 54,
+          "timestamp_sec": 10.8,
+          "x": 4.4,
+          "y": 2.2228,
+          "z_est": 0.0,
+          "vx": 0.0,
+          "vy": -0.0503
+        }
+      ],
+      "source_clip": null,
+      "metadata": {
+        "fragility": "standard"
+      }
+    },
+    {
+      "id": "material_pushed_or_thrown_seed_001",
+      "behavior_class": "material_pushed_or_thrown",
+      "label": "Object launched with a fast ballistic burst that decays as it travels \u2014 pushed or thrown, not carried",
+      "points": [
+        {
+          "frame_idx": 0,
+          "timestamp_sec": 0.0,
+          "x": 0.0,
+          "y": 3.0,
+          "z_est": 1.0,
+          "vx": 2.88,
+          "vy": -0.15
+        },
+        {
+          "frame_idx": 1,
+          "timestamp_sec": 0.2,
+          "x": 0.576,
+          "y": 2.97,
+          "z_est": 0.8038,
+          "vx": 2.76,
+          "vy": -0.15
+        },
+        {
+          "frame_idx": 2,
+          "timestamp_sec": 0.4,
+          "x": 1.104,
+          "y": 2.94,
+          "z_est": 0.2152,
+          "vx": 2.52,
+          "vy": -0.15
+        },
+        {
+          "frame_idx": 3,
+          "timestamp_sec": 0.6,
+          "x": 1.584,
+          "y": 2.91,
+          "z_est": 0.0,
+          "vx": 2.28,
+          "vy": -0.15
+        },
+        {
+          "frame_idx": 4,
+          "timestamp_sec": 0.8,
+          "x": 2.016,
+          "y": 2.88,
+          "z_est": 0.0,
+          "vx": 2.04,
+          "vy": -0.15
+        },
+        {
+          "frame_idx": 5,
+          "timestamp_sec": 1.0,
+          "x": 2.4,
+          "y": 2.85,
+          "z_est": 0.0,
+          "vx": 1.8,
+          "vy": -0.15
+        },
+        {
+          "frame_idx": 6,
+          "timestamp_sec": 1.2,
+          "x": 2.736,
+          "y": 2.82,
+          "z_est": 0.0,
+          "vx": 1.56,
+          "vy": -0.15
+        },
+        {
+          "frame_idx": 7,
+          "timestamp_sec": 1.4,
+          "x": 3.024,
+          "y": 2.79,
+          "z_est": 0.0,
+          "vx": 1.32,
+          "vy": -0.15
+        },
+        {
+          "frame_idx": 8,
+          "timestamp_sec": 1.6,
+          "x": 3.264,
+          "y": 2.76,
+          "z_est": 0.0,
+          "vx": 1.08,
+          "vy": -0.15
+        },
+        {
+          "frame_idx": 9,
+          "timestamp_sec": 1.8,
+          "x": 3.456,
+          "y": 2.73,
+          "z_est": 0.0,
+          "vx": 0.84,
+          "vy": -0.15
+        },
+        {
+          "frame_idx": 10,
+          "timestamp_sec": 2.0,
+          "x": 3.6,
+          "y": 2.7,
+          "z_est": 0.0,
+          "vx": 0.6,
+          "vy": -0.15
+        },
+        {
+          "frame_idx": 11,
+          "timestamp_sec": 2.2,
+          "x": 3.696,
+          "y": 2.67,
+          "z_est": 0.0,
+          "vx": 0.36,
+          "vy": -0.15
+        },
+        {
+          "frame_idx": 12,
+          "timestamp_sec": 2.4,
+          "x": 3.744,
+          "y": 2.64,
+          "z_est": 0.0,
+          "vx": 0.12,
+          "vy": -0.15
+        },
+        {
+          "frame_idx": 13,
+          "timestamp_sec": 2.6,
+          "x": 3.744,
+          "y": 2.61,
+          "z_est": 0.0,
+          "vx": -0.12,
+          "vy": -0.15
+        },
+        {
+          "frame_idx": 14,
+          "timestamp_sec": 2.8,
+          "x": 3.696,
+          "y": 2.58,
+          "z_est": 0.0,
+          "vx": -0.36,
+          "vy": -0.15
+        },
+        {
+          "frame_idx": 15,
+          "timestamp_sec": 3.0,
+          "x": 3.6,
+          "y": 2.55,
+          "z_est": 0.0,
+          "vx": -0.6,
+          "vy": -0.15
+        },
+        {
+          "frame_idx": 16,
+          "timestamp_sec": 3.2,
+          "x": 3.456,
+          "y": 2.52,
+          "z_est": 0.0,
+          "vx": -0.84,
+          "vy": -0.15
+        },
+        {
+          "frame_idx": 17,
+          "timestamp_sec": 3.4,
+          "x": 3.264,
+          "y": 2.49,
+          "z_est": 0.0,
+          "vx": -0.96,
+          "vy": -0.15
+        }
+      ],
+      "source_clip": null,
+      "metadata": {
+        "fragility": "fragile"
+      }
+    },
+    {
+      "id": "unsafe_loading_sequence_seed_001",
+      "behavior_class": "unsafe_loading_sequence",
+      "label": "Rapid lift \u2192 forceful drop \u2192 partial re-load onto a lower, unstable base within seconds",
+      "points": [
+        {
+          "frame_idx": 0,
+          "timestamp_sec": 0.0,
+          "x": 2.0,
+          "y": 1.0,
+          "z_est": 0.0,
+          "vx": 0.25,
+          "vy": 1.6939
+        },
+        {
+          "frame_idx": 1,
+          "timestamp_sec": 0.2,
+          "x": 2.05,
+          "y": 1.3388,
+          "z_est": 0.0,
+          "vx": 0.25,
+          "vy": 1.3981
+        },
+        {
+          "frame_idx": 2,
+          "timestamp_sec": 0.4,
+          "x": 2.1,
+          "y": 1.5592,
+          "z_est": 0.0,
+          "vx": 0.25,
+          "vy": 0.6138
+        },
+        {
+          "frame_idx": 3,
+          "timestamp_sec": 0.6,
+          "x": 2.15,
+          "y": 1.5843,
+          "z_est": 0.0,
+          "vx": 0.25,
+          "vy": -0.3849
+        },
+        {
+          "frame_idx": 4,
+          "timestamp_sec": 0.8,
+          "x": 2.2,
+          "y": 1.4053,
+          "z_est": 0.0,
+          "vx": 0.25,
+          "vy": -1.2491
+        },
+        {
+          "frame_idx": 5,
+          "timestamp_sec": 1.0,
+          "x": 2.25,
+          "y": 1.0847,
+          "z_est": 0.0,
+          "vx": 0.25,
+          "vy": -0.3494
+        },
+        {
+          "frame_idx": 6,
+          "timestamp_sec": 1.2,
+          "x": 2.3,
+          "y": 1.2655,
+          "z_est": 0.0,
+          "vx": 0.25,
+          "vy": 1.0957
+        },
+        {
+          "frame_idx": 7,
+          "timestamp_sec": 1.4,
+          "x": 2.35,
+          "y": 1.5229,
+          "z_est": 0.0,
+          "vx": 0.25,
+          "vy": 0.8305
+        },
+        {
+          "frame_idx": 8,
+          "timestamp_sec": 1.6,
+          "x": 2.4,
+          "y": 1.5977,
+          "z_est": 0.9,
+          "vx": 0.25,
+          "vy": -0.1482
+        },
+        {
+          "frame_idx": 9,
+          "timestamp_sec": 1.8,
+          "x": 2.45,
+          "y": 1.4637,
+          "z_est": 0.9,
+          "vx": 0.25,
+          "vy": -1.0751
+        },
+        {
+          "frame_idx": 10,
+          "timestamp_sec": 2.0,
+          "x": 2.5,
+          "y": 1.1676,
+          "z_est": 0.9,
+          "vx": 0.25,
+          "vy": -0.6918
+        },
+        {
+          "frame_idx": 11,
+          "timestamp_sec": 2.2,
+          "x": 2.55,
+          "y": 1.1869,
+          "z_est": 0.9,
+          "vx": 0.25,
+          "vy": 0.7714
+        },
+        {
+          "frame_idx": 12,
+          "timestamp_sec": 2.4,
+          "x": 2.6,
+          "y": 1.4762,
+          "z_est": 0.0,
+          "vx": 0.25,
+          "vy": 1.0305
+        },
+        {
+          "frame_idx": 13,
+          "timestamp_sec": 2.6,
+          "x": 2.65,
+          "y": 1.5991,
+          "z_est": 0.0,
+          "vx": 0.25,
+          "vy": 0.0914
+        },
+        {
+          "frame_idx": 14,
+          "timestamp_sec": 2.8,
+          "x": 2.7,
+          "y": 1.5128,
+          "z_est": 0.0,
+          "vx": 0.25,
+          "vy": -0.8796
+        },
+        {
+          "frame_idx": 15,
+          "timestamp_sec": 3.0,
+          "x": 2.75,
+          "y": 1.2473,
+          "z_est": 0.0,
+          "vx": 0.25,
+          "vy": -1.0204
+        },
+        {
+          "frame_idx": 16,
+          "timestamp_sec": 3.2,
+          "x": 2.8,
+          "y": 1.1046,
+          "z_est": 0.4,
+          "vx": 0.125,
+          "vy": 0.4316
+        },
+        {
+          "frame_idx": 17,
+          "timestamp_sec": 3.4,
+          "x": 2.8,
+          "y": 1.4199,
+          "z_est": 0.4,
+          "vx": 0.0,
+          "vy": 1.2099
+        },
+        {
+          "frame_idx": 18,
+          "timestamp_sec": 3.6,
+          "x": 2.8,
+          "y": 1.5886,
+          "z_est": 0.4,
+          "vx": 0.0,
+          "vy": 0.3292
+        },
+        {
+          "frame_idx": 19,
+          "timestamp_sec": 3.8,
+          "x": 2.8,
+          "y": 1.5516,
+          "z_est": 0.4,
+          "vx": 0.0,
+          "vy": -0.6665
+        },
+        {
+          "frame_idx": 20,
+          "timestamp_sec": 4.0,
+          "x": 2.8,
+          "y": 1.3219,
+          "z_est": 0.4,
+          "vx": 0.0,
+          "vy": -1.3286
+        },
+        {
+          "frame_idx": 21,
+          "timestamp_sec": 4.2,
+          "x": 2.8,
+          "y": 1.0202,
+          "z_est": 0.4,
+          "vx": 0.0,
+          "vy": 0.0833
+        },
+        {
+          "frame_idx": 22,
+          "timestamp_sec": 4.4,
+          "x": 2.8,
+          "y": 1.3552,
+          "z_est": 0.4,
+          "vx": 0.0,
+          "vy": 1.3651
+        },
+        {
+          "frame_idx": 23,
+          "timestamp_sec": 4.6,
+          "x": 2.8,
+          "y": 1.5662,
+          "z_est": 0.4,
+          "vx": 0.0,
+          "vy": 0.5604
+        },
+        {
+          "frame_idx": 24,
+          "timestamp_sec": 4.8,
+          "x": 2.8,
+          "y": 1.5794,
+          "z_est": 0.4,
+          "vx": 0.0,
+          "vy": -0.4401
+        },
+        {
+          "frame_idx": 25,
+          "timestamp_sec": 5.0,
+          "x": 2.8,
+          "y": 1.3902,
+          "z_est": 0.4,
+          "vx": 0.0,
+          "vy": -0.9461
+        }
+      ],
+      "source_clip": null,
+      "metadata": {
+        "fragility": "fragile"
+      }
+    },
+    {
+      "id": "product_dragged_real_001",
+      "behavior_class": "product_dragged",
+      "label": "Real warehouse clip: cupboard dragged across floor at steady speed (track 6, Dock level dragging cupboard.mp4)",
+      "points": [
+        {
+          "frame_idx": 76,
+          "timestamp_sec": 15.2,
+          "x": 6.6739999999999995,
+          "y": 7.040000000000001,
+          "z_est": 0.0,
+          "vx": 0.0,
+          "vy": 0.0
+        },
+        {
+          "frame_idx": 77,
+          "timestamp_sec": 15.4,
+          "x": 6.470000000000001,
+          "y": 7.040000000000001,
+          "z_est": 0.0,
+          "vx": -1.019999999999989,
+          "vy": 0.0
+        },
+        {
+          "frame_idx": 78,
+          "timestamp_sec": 15.6,
+          "x": 6.58,
+          "y": 7.040000000000001,
+          "z_est": 0.0,
+          "vx": 0.5499999999999992,
+          "vy": 0.0
+        },
+        {
+          "frame_idx": 79,
+          "timestamp_sec": 15.8,
+          "x": 6.69,
+          "y": 7.040000000000001,
+          "z_est": 0.0,
+          "vx": 0.5499999999999987,
+          "vy": 0.0
+        },
+        {
+          "frame_idx": 80,
+          "timestamp_sec": 16.0,
+          "x": 7.163,
+          "y": 7.040000000000001,
+          "z_est": 0.0,
+          "vx": 2.3650000000000078,
+          "vy": 0.0
+        },
+        {
+          "frame_idx": 81,
+          "timestamp_sec": 16.2,
+          "x": 7.534000000000001,
+          "y": 7.040000000000001,
+          "z_est": 0.0,
+          "vx": 1.8550000000000089,
+          "vy": 0.0
+        },
+        {
+          "frame_idx": 82,
+          "timestamp_sec": 16.4,
+          "x": 7.746,
+          "y": 7.040000000000001,
+          "z_est": 0.0,
+          "vx": 1.0600000000000025,
+          "vy": 0.0
+        },
+        {
+          "frame_idx": 83,
+          "timestamp_sec": 16.6,
+          "x": 8.158000000000001,
+          "y": 7.039000000000001,
+          "z_est": 0.0,
+          "vx": 2.0599999999999747,
+          "vy": -0.005000000000001599
+        },
+        {
+          "frame_idx": 84,
+          "timestamp_sec": 16.8,
+          "x": 8.546,
+          "y": 7.038,
+          "z_est": 0.0,
+          "vx": 1.9399999999999975,
+          "vy": -0.005000000000001687
+        },
+        {
+          "frame_idx": 85,
+          "timestamp_sec": 17.0,
+          "x": 8.754999999999999,
+          "y": 7.037000000000001,
+          "z_est": 0.0,
+          "vx": 1.045000000000002,
+          "vy": -0.004999999999997246
+        },
+        {
+          "frame_idx": 86,
+          "timestamp_sec": 17.2,
+          "x": 8.903,
+          "y": 7.0360000000000005,
+          "z_est": 0.0,
+          "vx": 0.74000000000001,
+          "vy": -0.005000000000001687
+        },
+        {
+          "frame_idx": 87,
+          "timestamp_sec": 17.4,
+          "x": 9.387,
+          "y": 7.035,
+          "z_est": 0.0,
+          "vx": 2.4200000000000084,
+          "vy": -0.005000000000001687
+        },
+        {
+          "frame_idx": 88,
+          "timestamp_sec": 17.6,
+          "x": 9.456,
+          "y": 7.0360000000000005,
+          "z_est": 0.0,
+          "vx": 0.3449999999999904,
+          "vy": 0.005000000000001599
+        },
+        {
+          "frame_idx": 89,
+          "timestamp_sec": 17.8,
+          "x": 9.674,
+          "y": 7.037000000000001,
+          "z_est": 0.0,
+          "vx": 1.0900000000000036,
+          "vy": 0.005000000000001687
+        },
+        {
+          "frame_idx": 90,
+          "timestamp_sec": 18.0,
+          "x": 9.885,
+          "y": 7.038000000000001,
+          "z_est": 0.0,
+          "vx": 1.0550000000000053,
+          "vy": 0.005000000000001687
+        },
+        {
+          "frame_idx": 91,
+          "timestamp_sec": 18.2,
+          "x": 10.269,
+          "y": 7.0390000000000015,
+          "z_est": 0.0,
+          "vx": 1.9200000000000086,
+          "vy": 0.005000000000001687
+        },
+        {
+          "frame_idx": 92,
+          "timestamp_sec": 18.4,
+          "x": 10.547,
+          "y": 7.040000000000001,
+          "z_est": 0.0,
+          "vx": 1.3900000000000072,
+          "vy": 0.004999999999997246
+        },
+        {
+          "frame_idx": 93,
+          "timestamp_sec": 18.6,
+          "x": 10.697000000000001,
+          "y": 7.040000000000001,
+          "z_est": 0.0,
+          "vx": 0.7499999999999911,
+          "vy": 0.0
+        },
+        {
+          "frame_idx": 94,
+          "timestamp_sec": 18.8,
+          "x": 10.991000000000001,
+          "y": 7.040000000000001,
+          "z_est": 0.0,
+          "vx": 1.4700000000000077,
+          "vy": 0.0
+        },
+        {
+          "frame_idx": 95,
+          "timestamp_sec": 19.0,
+          "x": 11.292000000000002,
+          "y": 7.040000000000001,
+          "z_est": 0.0,
+          "vx": 1.505000000000006,
+          "vy": 0.0
+        },
+        {
+          "frame_idx": 96,
+          "timestamp_sec": 19.2,
+          "x": 11.426,
+          "y": 7.040000000000001,
+          "z_est": 0.0,
+          "vx": 0.6699999999999952,
+          "vy": 0.0
+        },
+        {
+          "frame_idx": 97,
+          "timestamp_sec": 19.4,
+          "x": 11.652000000000001,
+          "y": 7.040000000000001,
+          "z_est": 0.0,
+          "vx": 1.1300000000000083,
+          "vy": 0.0
+        },
+        {
+          "frame_idx": 98,
+          "timestamp_sec": 19.6,
+          "x": 11.907,
+          "y": 7.040000000000001,
+          "z_est": 0.0,
+          "vx": 1.2749999999999768,
+          "vy": 0.0
+        },
+        {
+          "frame_idx": 99,
+          "timestamp_sec": 19.8,
+          "x": 11.893,
+          "y": 7.040000000000001,
+          "z_est": 0.0,
+          "vx": -0.06999999999999698,
+          "vy": 0.0
+        },
+        {
+          "frame_idx": 100,
+          "timestamp_sec": 20.0,
+          "x": 11.879000000000001,
+          "y": 7.040000000000001,
+          "z_est": 0.0,
+          "vx": -0.06999999999999698,
+          "vy": 0.0
+        },
+        {
+          "frame_idx": 101,
+          "timestamp_sec": 20.2,
+          "x": 11.865000000000002,
+          "y": 7.040000000000001,
+          "z_est": 0.0,
+          "vx": -0.06999999999999698,
+          "vy": 0.0
+        },
+        {
+          "frame_idx": 102,
+          "timestamp_sec": 20.4,
+          "x": 11.865000000000002,
+          "y": 7.040000000000001,
+          "z_est": 0.0,
+          "vx": 0.0,
+          "vy": 0.0
+        },
+        {
+          "frame_idx": 103,
+          "timestamp_sec": 20.6,
+          "x": 11.865000000000002,
+          "y": 7.040000000000001,
+          "z_est": 0.0,
+          "vx": 0.0,
+          "vy": 0.0
+        },
+        {
+          "frame_idx": 104,
+          "timestamp_sec": 20.8,
+          "x": 11.865000000000002,
+          "y": 7.040000000000001,
+          "z_est": 0.0,
+          "vx": 0.0,
+          "vy": 0.0
+        }
+      ],
+      "source_clip": "Dock level, dragging cupboard.mp4",
+      "metadata": {
+        "fragility": "standard",
+        "track_id": 6,
+        "max_speed_mps": 2.42,
+        "displacement_m": 5.19
+      }
+    },
+    {
+      "id": "material_pushed_or_thrown_real_001",
+      "behavior_class": "material_pushed_or_thrown",
+      "label": "Real warehouse clip: mattress thrown/pushed with burst (track 79, Throwing Mattresses.mp4)",
+      "points": [
+        {
+          "frame_idx": 83,
+          "timestamp_sec": 16.6,
+          "x": 3.7480000000000007,
+          "y": 6.997000000000001,
+          "z_est": 0.0,
+          "vx": 0.0,
+          "vy": 0.0
+        },
+        {
+          "frame_idx": 84,
+          "timestamp_sec": 16.8,
+          "x": 3.8580000000000005,
+          "y": 6.998000000000001,
+          "z_est": 0.0,
+          "vx": 0.5500000000000014,
+          "vy": 0.005000000000001687
+        },
+        {
+          "frame_idx": 85,
+          "timestamp_sec": 17.0,
+          "x": 3.9680000000000004,
+          "y": 6.999000000000001,
+          "z_est": 0.0,
+          "vx": 0.5500000000000014,
+          "vy": 0.005000000000001687
+        },
+        {
+          "frame_idx": 86,
+          "timestamp_sec": 17.2,
+          "x": 4.078,
+          "y": 7.000000000000001,
+          "z_est": 0.0,
+          "vx": 0.5500000000000014,
+          "vy": 0.004999999999997246
+        },
+        {
+          "frame_idx": 87,
+          "timestamp_sec": 17.4,
+          "x": 4.164000000000001,
+          "y": 7.000000000000001,
+          "z_est": 0.0,
+          "vx": 0.43000000000000305,
+          "vy": 0.0
+        },
+        {
+          "frame_idx": 88,
+          "timestamp_sec": 17.6,
+          "x": 4.25,
+          "y": 7.000000000000001,
+          "z_est": 0.0,
+          "vx": 0.42999999999999095,
+          "vy": 0.0
+        },
+        {
+          "frame_idx": 89,
+          "timestamp_sec": 17.8,
+          "x": 4.25,
+          "y": 7.000000000000001,
+          "z_est": 0.0,
+          "vx": 0.0,
+          "vy": 0.0
+        },
+        {
+          "frame_idx": 90,
+          "timestamp_sec": 18.0,
+          "x": 4.204000000000001,
+          "y": 6.9990000000000006,
+          "z_est": 0.0,
+          "vx": -0.22999999999999768,
+          "vy": -0.005000000000001687
+        },
+        {
+          "frame_idx": 91,
+          "timestamp_sec": 18.2,
+          "x": 4.331,
+          "y": 6.998,
+          "z_est": 0.0,
+          "vx": 0.6350000000000011,
+          "vy": -0.005000000000001687
+        },
+        {
+          "frame_idx": 92,
+          "timestamp_sec": 18.4,
+          "x": 4.563000000000001,
+          "y": 6.997,
+          "z_est": 0.0,
+          "vx": 1.1600000000000052,
+          "vy": -0.005000000000001687
+        },
+        {
+          "frame_idx": 93,
+          "timestamp_sec": 18.6,
+          "x": 4.665,
+          "y": 6.996,
+          "z_est": 0.0,
+          "vx": 0.5099999999999899,
+          "vy": -0.004999999999997158
+        },
+        {
+          "frame_idx": 94,
+          "timestamp_sec": 18.8,
+          "x": 4.933000000000001,
+          "y": 6.995,
+          "z_est": 0.0,
+          "vx": 1.340000000000008,
+          "vy": -0.005000000000001687
+        },
+        {
+          "frame_idx": 95,
+          "timestamp_sec": 19.0,
+          "x": 5.247000000000001,
+          "y": 6.995,
+          "z_est": 0.0,
+          "vx": 1.5700000000000058,
+          "vy": 0.0
+        },
+        {
+          "frame_idx": 96,
+          "timestamp_sec": 19.2,
+          "x": 5.388000000000001,
+          "y": 6.995,
+          "z_est": 0.0,
+          "vx": 0.7050000000000026,
+          "vy": 0.0
+        },
+        {
+          "frame_idx": 97,
+          "timestamp_sec": 19.4,
+          "x": 5.424000000000001,
+          "y": 6.995,
+          "z_est": 0.0,
+          "vx": 0.18000000000000302,
+          "vy": 0.0
+        },
+        {
+          "frame_idx": 98,
+          "timestamp_sec": 19.6,
+          "x": 5.590000000000001,
+          "y": 6.995,
+          "z_est": 0.0,
+          "vx": 0.8299999999999856,
+          "vy": 0.0
+        },
+        {
+          "frame_idx": 99,
+          "timestamp_sec": 19.8,
+          "x": 5.590000000000001,
+          "y": 6.995,
+          "z_est": 0.0,
+          "vx": 0.0,
+          "vy": 0.0
+        },
+        {
+          "frame_idx": 100,
+          "timestamp_sec": 20.0,
+          "x": 5.590000000000001,
+          "y": 6.995,
+          "z_est": 0.0,
+          "vx": 0.0,
+          "vy": 0.0
+        },
+        {
+          "frame_idx": 101,
+          "timestamp_sec": 20.2,
+          "x": 5.590000000000001,
+          "y": 6.995,
+          "z_est": 0.0,
+          "vx": 0.0,
+          "vy": 0.0
+        }
+      ],
+      "source_clip": "Throwing Mattresses.mp4",
+      "metadata": {
+        "fragility": "standard",
+        "track_id": 79,
+        "max_speed_mps": 1.57,
+        "displacement_m": 1.84
+      }
+    }
+  ],
+  "version": "1.0",
+  "updated": "2026-09-10T00:03:30.673543"
+}

@@ -1,0 +1,114 @@
+# ReplayTwin — Central Configuration
+# Warehouse Video Intelligence Pipeline
+
+pipeline:
+  target_fps: 5.0            # frames per second for processing (4-6 recommended)
+  video_source: data/clips/  # directory with pilot mp4s
+
+motion_detection:
+  method: farneback          # farneback | raft
+  motion_threshold: 2.0
+  min_region_area: 500
+  spike_std_multiplier: 2.5
+  rolling_window: 15
+
+segmentation:
+  enabled: true
+  use_sam2: false            # only runs on flow-flagged bboxes; lazy-loads torch
+  fallback: opencv_fallback  # always available
+  merge_kernel_px: 6         # morphology gap-bridge; keep SMALL (large -> one static blob)
+  max_new_tracks: 12         # cap new tracks/frame (fragmented flow = noise, not objects)
+
+pose_estimation:
+  enabled: true
+  use_mediapipe: true        # lazy-loaded; skips gracefully if unavailable
+  fallback: none             # pose data skipped if mediapipe missing
+
+trajectory:
+  smoother: moving_average   # moving_average | kalman
+  ma_window: 5               # moving average window size
+  min_track_length: 10       # minimum frames (~2 s at 5 fps) to consider a valid track
+  min_speed_mps: 0.05        # skip sealed tracks slower than this (parked objects)
+  max_gap_frames: 5          # max frames a track can be missing before deletion
+
+matching:
+  algorithm: fastdtw         # fastdtw | numpy_dtw
+  exemplar_path: data/exemplars/behaviors.json
+  max_distance: 2.0          # DTW distance threshold for valid match
+  # Behaviours detected by trajectory-SHAPE matching (DTW). Rule-driven
+  # behaviours (zone placement, stacking, equipment, sequence) must NOT compete
+  # here — a straight-line exemplar would swallow every translation.
+  dtw_classes:
+    - product_dropped
+    - product_dragged
+    - material_pushed_or_thrown
+  behavior_classes:
+    - product_dropped
+    - product_dragged
+    - rough_handling
+    - incorrect_stacking
+    - unstable_stacking
+    - outside_designated_zone
+    - no_required_equipment
+    - pallet_mispositioned
+    - material_pushed_or_thrown
+    - unsafe_loading_sequence
+
+# Layout zones (per camera) for the outside_designated_zone RULE. Polygons are
+# normalized 0-1 frame coordinates. 'default' applies when a camera id is
+# unknown; leaving zones empty keeps the rule dormant (no false positives).
+zones:
+  default:
+    - - [0.0, 0.0]
+      - [1.0, 0.0]
+      - [1.0, 1.0]
+      - [0.0, 1.0]
+
+physics:
+  mandatory_before_alert: true
+  gravity: 9.81
+  pixel_scale: 0.01          # meters per pixel (calibrate from reference object)
+  reference_object_width_px: 120  # pallet width in pixels (calibrate per camera)
+  reference_object_width_m: 1.2   # pallet width in meters
+  drop_height_threshold: 0.3      # meters — minimum for "dropped" classification
+  impact_velocity_threshold: 2.0  # m/s — minimum for impact detection
+
+risk:
+  weights:
+    w1_dtw_match: 0.25
+    w2_physics_severity: 0.25
+    w3_fragility: 0.15
+    w4_repetition: 0.20
+    w5_zone_criticality: 0.15
+  levels:
+    low: 0.25
+    medium: 0.50
+    high: 0.75
+    critical: 1.00
+  evidence_trim_sec: 5       # ±5 seconds around event for evidence clip
+  fragility_classes:
+    standard: 0.3
+    fragile: 0.7
+    very_fragile: 1.0
+
+voice:
+  enabled: false
+  engine: pyttsx3
+  rate: 150
+
+storage:
+  use_s3: false
+  s3_bucket: damage-dna-evidence
+  s3_endpoint: null          # S3-compatible endpoint (MinIO etc.)
+
+database:
+  url: postgresql://localhost:5432/damage_dna
+
+assistant:
+  model: claude-opus-5
+  enabled: false             # requires ANTHROPIC_API_KEY in .env
+
+server:
+  host: 0.0.0.0
+  port: 8000
+  ws_heartbeat_sec: 30

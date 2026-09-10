@@ -1,6 +1,7 @@
-fastapi>=0.100.0
-uvicorn>=0.23.0
-sqlalchemy>=2.0.0
-psycopg2-binary>=2.9.0
-python-dotenv>=1.0.0
-pydantic>=2.0.0
+# ReplayTwin backend
+fastapi>=0.110
+uvicorn[standard]>=0.29
+SQLAlchemy>=2.0
+pydantic>=2.0
+# RAG assistant (official Anthropic SDK)
+anthropic>=0.40.0
