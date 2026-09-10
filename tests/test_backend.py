@@ -100,7 +100,10 @@ def test_behaviors_and_voice() -> None:
             json={"behavior_class": "product_dropped", "risk_level": "critical"},
         ).json()
         assert "high risk" in v["message"].lower()
-        assert "product_dropped" in v["message"]
+        # Multilingual voice coach renders the class as a natural-language
+        # label, not the raw snake_case id.
+        assert "a product was dropped" in v["message"].lower()
+        assert "product_dropped" not in v["message"]
 
 
 def test_assistant_no_key_degrades_helpfully() -> None:
