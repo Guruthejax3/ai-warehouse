@@ -1,7 +1,7 @@
 """ReplayTwin — Warehouse Video Intelligence Pipeline.
 
 Pipeline stages:
-  1. Motion Detection    → cv-pipeline/motion_detection/
+  1. Motion Detection    → cv_pipeline/motion_detection/
   2. Segmentation        → pipeline/perception/segmentation.py
   3. Pose Estimation     → pipeline/perception/pose.py
   4. Trajectory Building → pipeline/trajectory/builder.py

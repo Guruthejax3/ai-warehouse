@@ -11,16 +11,16 @@ Handoff contract (output JSON per frame):
     }
 
 Usage (single video):
-    python -m cv-pipeline.motion_detection.run_motion_detection \
+    python -m cv_pipeline.motion_detection.run_motion_detection \
         --video data/pilot_videos/"Dock level, dragging cupboard.mp4" \
         --output motion_output.json \
         --fps 10 \
         --visualize
 
 Usage (batch mode):
-    python -m cv-pipeline.motion_detection.run_motion_detection \
+    python -m cv_pipeline.motion_detection.run_motion_detection \
         --batch \
-        --output-dir cv-pipeline/motion_detection/outputs \
+        --output-dir cv_pipeline/motion_detection/outputs \
         --fps 10
 """
 
@@ -63,7 +63,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--output-dir",
         type=Path,
-        default=Path("cv-pipeline/motion_detection/outputs"),
+        default=Path("cv_pipeline/motion_detection/outputs"),
         help="Directory for batch-mode outputs (gitignored).",
     )
     parser.add_argument(
@@ -311,9 +311,9 @@ def run_batch(
         print(f"    Throwing Mattresses spikes: {mattress_spikes}")
         print(f"    Dragging Cupboard spikes:   {dragging_spikes}")
         if mattress_spikes > dragging_spikes:
-            print("    ✓ PASS — Throwing has more sudden spikes than dragging")
+            print("    [PASS] Throwing has more sudden spikes than dragging")
         else:
-            print("    ✗ FAIL — Expected more spikes in throwing video")
+            print("    [FAIL] Expected more spikes in throwing video")
 
 
 def main() -> int:

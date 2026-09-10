@@ -2,7 +2,7 @@
 
 This is the shared entry point used by the CLI (scripts/run_pipeline.py) and
 the FastAPI backend (POST /api/ingest). It consumes the existing upstream
-MotionDetector from cv-pipeline/motion_detection via sys.path.
+MotionDetector from cv_pipeline/motion_detection via sys.path.
 
     events, trajectories = process_clip(video_path, cfg)
 
@@ -22,8 +22,8 @@ import cv2
 import numpy as np
 
 ROOT = Path(__file__).parent.parent
-if str(ROOT / "cv-pipeline" / "motion_detection") not in sys.path:
-    sys.path.insert(0, str(ROOT / "cv-pipeline" / "motion_detection"))
+if str(ROOT / "cv_pipeline" / "motion_detection") not in sys.path:
+    sys.path.insert(0, str(ROOT / "cv_pipeline" / "motion_detection"))
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 

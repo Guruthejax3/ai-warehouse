@@ -17,7 +17,7 @@ GPU) degrade gracefully to OpenCV fallbacks, and Postgres degrades to SQLite.
 Video (.mp4)
    │  OpenCV VideoCapture, frame-skip to target FPS
    ▼
-Motion detection ──► flow-flagged bboxes            cv-pipeline/motion_detection/
+Motion detection ──► flow-flagged bboxes            cv_pipeline/motion_detection/
    │                                                    (Farneback / RAFT — NOT rewritten)
    ▼
 Segmentation + tracking ──► TrackedObject(id, bbox)  pipeline/perception/segmentation.py
@@ -78,7 +78,7 @@ or served by the API.
 
 ```
 backend/            FastAPI app (ingest, events, replay, voice, assistant, WS)
-cv-pipeline/        motion detection (Farneback / RAFT) — reused, not rewritten
+cv_pipeline/        six standalone CV stages (motion → tracking → pose → kinematics → FSM → risk)
 data/clips/         real pilot videos (GITIGNORED — never committed)
 data/exemplars/     behaviour exemplar library (JSON); 2 real pilot-clip exemplars
 data/evidence_clips/±5s blurred evidence clips (GITIGNORED)

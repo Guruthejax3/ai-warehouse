@@ -24,8 +24,12 @@ data/exemplars/*.json
 !data/exemplars/behaviors.json
 
 # Motion detection outputs (generated files)
-cv-pipeline/motion_detection/outputs/
+cv_pipeline/motion_detection/outputs/
 *.annotated.mp4
+
+# cv_pipeline smoke-test / demo outputs (generated)
+reports/
+cv_pipeline/**/outputs/
 
 # Runtime event DB (SQLite fallback) — regenerated, don't commit
 data/events.db
