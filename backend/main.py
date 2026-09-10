@@ -155,6 +155,8 @@ def _event_to_dict(ev) -> dict:
         "justification": ev.justification,
         "evidence_clip_start": ev.evidence_clip_start,
         "evidence_clip_end": ev.evidence_clip_end,
+        "evidence_clip_path": getattr(ev, "evidence_clip_path", ""),
+        "activity_type": getattr(ev, "activity_type", "unknown"),
         "zone_id": md.get("zone_id", "bay_0"),
         "metadata": md,
     }
@@ -260,6 +262,7 @@ async def ingest_video(req: IngestRequest, db: Session = Depends(get_db)) -> Ing
                     trim_sec=float(cfg_trim()),
                     event_id=ev.event_id,
                 )
+                ev.evidence_clip_path = str(clip.path)
                 row.evidence_clip_path = str(clip.path)
                 db.commit()
             except Exception as exc:

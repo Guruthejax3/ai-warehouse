@@ -145,6 +145,8 @@ class RiskEvent:
     justification: str = ""       # MUST be non-empty — explainable alert
     evidence_clip_start: int = 0  # frame index
     evidence_clip_end: int = 0    # frame index
+    evidence_clip_path: str = ""  # populated after clip extraction
+    activity_type: str = "unknown"  # loading | unloading | idle | transit
     trajectory_id: int = 0
     metadata: Dict = field(default_factory=dict)
 
